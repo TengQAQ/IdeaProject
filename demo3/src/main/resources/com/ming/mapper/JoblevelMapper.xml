@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.mapper.JoblevelMapper">
+
+    <resultMap id="BaseResultMap" type="com.ming.entity.Joblevel">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="titlelevel" column="titleLevel" jdbcType="OTHER"/>
+            <result property="createdate" column="createDate" jdbcType="TIMESTAMP"/>
+            <result property="enabled" column="enabled" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name,titleLevel,
+        createDate,enabled
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from joblevel
+        where  id = #{id,jdbcType=INTEGER} 
+    </select>
+    <select id="allJoblevel" resultType="com.ming.entity.Joblevel">
+        select
+        <include refid="Base_Column_List" />
+        from joblevel
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from joblevel
+        where  id = #{id,jdbcType=INTEGER} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ming.entity.Joblevel" useGeneratedKeys="true">
+        insert into joblevel
+        ( id,name,titleLevel
+        ,createDate,enabled)
+        values (#{id,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{titlelevel,jdbcType=OTHER}
+        ,#{createdate,jdbcType=TIMESTAMP},#{enabled,jdbcType=TINYINT})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ming.entity.Joblevel" useGeneratedKeys="true">
+        insert into joblevel
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">id,</if>
+                <if test="name != null">name,</if>
+                <if test="titlelevel != null">titleLevel,</if>
+                <if test="createdate != null">createDate,</if>
+                <if test="enabled != null">enabled,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null">#{id,jdbcType=INTEGER},</if>
+                <if test="name != null">#{name,jdbcType=VARCHAR},</if>
+                <if test="titlelevel != null">#{titlelevel,jdbcType=OTHER},</if>
+                <if test="createdate != null">#{createdate,jdbcType=TIMESTAMP},</if>
+                <if test="enabled != null">#{enabled,jdbcType=TINYINT},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ming.entity.Joblevel">
+        update joblevel
+        <set>
+                <if test="name != null">
+                    name = #{name,jdbcType=VARCHAR},
+                </if>
+                <if test="titlelevel != null">
+                    titleLevel = #{titlelevel,jdbcType=OTHER},
+                </if>
+                <if test="createdate != null">
+                    createDate = #{createdate,jdbcType=TIMESTAMP},
+                </if>
+                <if test="enabled != null">
+                    enabled = #{enabled,jdbcType=TINYINT},
+                </if>
+        </set>
+        where   id = #{id,jdbcType=INTEGER} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ming.entity.Joblevel">
+        update joblevel
+        set 
+            name =  #{name,jdbcType=VARCHAR},
+            titleLevel =  #{titlelevel,jdbcType=OTHER},
+            createDate =  #{createdate,jdbcType=TIMESTAMP},
+            enabled =  #{enabled,jdbcType=TINYINT}
+        where   id = #{id,jdbcType=INTEGER} 
+    </update>
+</mapper>

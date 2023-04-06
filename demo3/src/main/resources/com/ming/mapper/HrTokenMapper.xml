@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.mapper.HrTokenMapper">
+
+    <resultMap id="BaseResultMap" type="com.ming.entity.HrToken">
+            <id property="hrId" column="hr_id" jdbcType="BIGINT"/>
+            <result property="token" column="token" jdbcType="VARCHAR"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="expireTime" column="expire_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        hr_id,token,update_time,
+        expire_time
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from hr_token
+        where  hr_id = #{hrId,jdbcType=BIGINT} 
+    </select>
+    <select id="selectByToken" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from hr_token
+        where  token = #{param1}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from hr_token
+        where  hr_id = #{hrId,jdbcType=BIGINT} 
+    </delete>
+    <delete id="logOut">
+        delete from hr_token
+        where  token = #{param1}
+    </delete>
+    <insert id="insert" keyColumn="hr_id" keyProperty="hrId" parameterType="com.ming.entity.HrToken" useGeneratedKeys="true">
+        insert into hr_token
+        ( hr_id,token,update_time
+        ,expire_time)
+        values (#{hrId,jdbcType=BIGINT},#{token,jdbcType=VARCHAR},#{updateTime,jdbcType=TIMESTAMP}
+        ,#{expireTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="hr_id" keyProperty="hrId" parameterType="com.ming.entity.HrToken" useGeneratedKeys="true">
+        insert into hr_token
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="hrId != null">hr_id,</if>
+                <if test="token != null">token,</if>
+                <if test="updateTime != null">update_time,</if>
+                <if test="expireTime != null">expire_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="hrId != null">#{hrId,jdbcType=BIGINT},</if>
+                <if test="token != null">#{token,jdbcType=VARCHAR},</if>
+                <if test="updateTime != null">#{updateTime,jdbcType=TIMESTAMP},</if>
+                <if test="expireTime != null">#{expireTime,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ming.entity.HrToken">
+        update hr_token
+        <set>
+                <if test="token != null">
+                    token = #{token,jdbcType=VARCHAR},
+                </if>
+                <if test="updateTime != null">
+                    update_time = #{updateTime,jdbcType=TIMESTAMP},
+                </if>
+                <if test="expireTime != null">
+                    expire_time = #{expireTime,jdbcType=TIMESTAMP},
+                </if>
+        </set>
+        where   hr_id = #{hrId,jdbcType=BIGINT} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ming.entity.HrToken">
+        update hr_token
+        set 
+            token =  #{token,jdbcType=VARCHAR},
+            update_time =  #{updateTime,jdbcType=TIMESTAMP},
+            expire_time =  #{expireTime,jdbcType=TIMESTAMP}
+        where   hr_id = #{hrId,jdbcType=BIGINT} 
+    </update>
+</mapper>

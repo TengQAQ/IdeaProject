@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.mapper.EmployeeMapper">
+
+    <resultMap id="BaseResultMap" type="com.ming.entity.Employee">
+            <id property="id" column="id" jdbcType="OTHER"/>
+            <result property="username" column="username" jdbcType="VARCHAR"/>
+            <result property="password" column="password" jdbcType="VARCHAR"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="phone" column="phone" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="INTEGER"/>
+            <result property="ofDepartment" column="of_department" jdbcType="INTEGER"/>
+            <result property="entryTime" column="entry_time" jdbcType="DATE"/>
+            <result property="updateTime" column="update_time" jdbcType="DATE"/>
+            <result property="position" column="position" jdbcType="INTEGER"/>
+            <result property="token" column="token" jdbcType="VARCHAR"/>
+            <result property="expire" column="expire" jdbcType="BIGINT"/>
+            <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,username,password,
+        name,phone,status,
+        of_department,entry_time,update_time,
+        position,token,expire,
+        avatar
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from employee
+        where  id = #{id,jdbcType=OTHER} 
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="com.ming.Dto.EmployeeDto">
+        select
+            <include refid="Base_Column_List"/>
+        from employee e
+        <where>
+            <if test="username != null">
+                e.username = #{username}
+            </if>
+            <if test="phone != null">
+                and  e.phone = #{phone}
+            </if>
+            <if test="status != null">
+                and e.status = #{status}
+            </if>
+            <if test="startTime != null">
+                and  e.entry_time >= #{startTime}
+            </if>
+            <if test="endTime != null">
+                <![CDATA[
+                 and  e.entry_time <= #{endTime}
+                ]]>
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from employee
+        where  id = #{id,jdbcType=OTHER} 
+    </delete>
+    <delete id="toDelete">
+        delete from employee
+        where id in
+        <foreach collection="array" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ming.entity.Employee" useGeneratedKeys="true">
+        insert into employee
+        ( id,username,password
+        ,name,phone,status
+        ,of_department,entry_time,update_time
+        ,position,token,expire
+        ,avatar)
+        values (#{id,jdbcType=OTHER},#{username,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR}
+        ,#{name,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR},#{status,jdbcType=INTEGER}
+        ,#{ofDepartment,jdbcType=INTEGER},#{entryTime,jdbcType=DATE},#{updateTime,jdbcType=DATE}
+        ,#{position,jdbcType=INTEGER},#{token,jdbcType=VARCHAR},#{expire,jdbcType=BIGINT}
+        ,#{avatar,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ming.entity.Employee" useGeneratedKeys="true">
+        insert into employee
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">id,</if>
+                <if test="username != null">username,</if>
+                <if test="password != null">password,</if>
+                <if test="name != null">name,</if>
+                <if test="phone != null">phone,</if>
+                <if test="status != null">status,</if>
+                <if test="ofDepartment != null">of_department,</if>
+                <if test="entryTime != null">entry_time,</if>
+                <if test="updateTime != null">update_time,</if>
+                <if test="position != null">position,</if>
+                <if test="token != null">token,</if>
+                <if test="expire != null">expire,</if>
+                <if test="avatar != null">avatar,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null">#{id,jdbcType=OTHER},</if>
+                <if test="username != null">#{username,jdbcType=VARCHAR},</if>
+                <if test="password != null">#{password,jdbcType=VARCHAR},</if>
+                <if test="name != null">#{name,jdbcType=VARCHAR},</if>
+                <if test="phone != null">#{phone,jdbcType=VARCHAR},</if>
+                <if test="status != null">#{status,jdbcType=INTEGER},</if>
+                <if test="ofDepartment != null">#{ofDepartment,jdbcType=INTEGER},</if>
+                <if test="entryTime != null">#{entryTime,jdbcType=DATE},</if>
+                <if test="updateTime != null">#{updateTime,jdbcType=DATE},</if>
+                <if test="position != null">#{position,jdbcType=INTEGER},</if>
+                <if test="token != null">#{token,jdbcType=VARCHAR},</if>
+                <if test="expire != null">#{expire,jdbcType=BIGINT},</if>
+                <if test="avatar != null">#{avatar,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ming.entity.Employee">
+        update employee
+        <set>
+                <if test="username != null">
+                    username = #{username,jdbcType=VARCHAR},
+                </if>
+                <if test="password != null">
+                    password = #{password,jdbcType=VARCHAR},
+                </if>
+                <if test="name != null">
+                    name = #{name,jdbcType=VARCHAR},
+                </if>
+                <if test="phone != null">
+                    phone = #{phone,jdbcType=VARCHAR},
+                </if>
+                <if test="status != null">
+                    status = #{status,jdbcType=INTEGER},
+                </if>
+                <if test="ofDepartment != null">
+                    of_department = #{ofDepartment,jdbcType=INTEGER},
+                </if>
+                <if test="entryTime != null">
+                    entry_time = #{entryTime,jdbcType=DATE},
+                </if>
+                <if test="updateTime != null">
+                    update_time = #{updateTime,jdbcType=DATE},
+                </if>
+                <if test="position != null">
+                    position = #{position,jdbcType=INTEGER},
+                </if>
+                <if test="token != null">
+                    token = #{token,jdbcType=VARCHAR},
+                </if>
+                <if test="expire != null">
+                    expire = #{expire,jdbcType=BIGINT},
+                </if>
+                <if test="avatar != null">
+                    avatar = #{avatar,jdbcType=VARCHAR},
+                </if>
+        </set>
+        where   id = #{id,jdbcType=OTHER} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ming.entity.Employee">
+        update employee
+        set 
+            username =  #{username,jdbcType=VARCHAR},
+            password =  #{password,jdbcType=VARCHAR},
+            name =  #{name,jdbcType=VARCHAR},
+            phone =  #{phone,jdbcType=VARCHAR},
+            status =  #{status,jdbcType=INTEGER},
+            of_department =  #{ofDepartment,jdbcType=INTEGER},
+            entry_time =  #{entryTime,jdbcType=DATE},
+            update_time =  #{updateTime,jdbcType=DATE},
+            position =  #{position,jdbcType=INTEGER},
+            token =  #{token,jdbcType=VARCHAR},
+            expire =  #{expire,jdbcType=BIGINT},
+            avatar =  #{avatar,jdbcType=VARCHAR}
+        where   id = #{id,jdbcType=OTHER} 
+    </update>
+</mapper>

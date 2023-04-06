@@ -1,0 +1,72 @@
+[INFO] [14:19:35.453] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConnectionManager.getConnection:20 --> database FilePath :D:\mybatis-start\.\config\sqlite3.db
+[INFO] [14:19:35.880] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConnectionManager.getConnection:20 --> database FilePath :D:\mybatis-start\.\config\sqlite3.db
+[INFO] [14:19:57.283] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConnectionManager.getConnection:20 --> database FilePath :D:\mybatis-start\.\config\sqlite3.db
+[INFO] [14:19:57.436] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConnectionManager.getConnection:20 --> database FilePath :D:\mybatis-start\.\config\sqlite3.db
+[INFO] [14:19:58.371] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:238 --> jar lib path: D:\mybatis-start\lib
+[INFO] [14:19:58.372] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\commons-beanutils-1.9.2.jar
+[INFO] [14:19:58.373] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\commons-collections-3.2.1.jar
+[INFO] [14:19:58.373] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\commons-io-2.5.jar
+[INFO] [14:19:58.373] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\commons-lang3-3.4.jar
+[INFO] [14:19:58.373] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\commons-logging-1.1.1.jar
+[INFO] [14:19:58.374] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\fastjson-1.2.7.jar
+[INFO] [14:19:58.374] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\hamcrest-core-1.3.jar
+[INFO] [14:19:58.374] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\jsch-0.1.54.jar
+[INFO] [14:19:58.374] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\junit-4.12.jar
+[INFO] [14:19:58.375] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\logback-classic-1.1.2.jar
+[INFO] [14:19:58.375] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\logback-core-1.1.2.jar
+[INFO] [14:19:58.375] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\mybatis-generator-core-1.3.6.jar
+[INFO] [14:19:58.376] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\mybatis-generator-lombok-plugin-1.0.jar
+[INFO] [14:19:58.376] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\mysql-connector-java-5.1.38.jar
+[INFO] [14:19:58.376] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\mysql-connector-java-8.0.11.jar
+[INFO] [14:19:58.377] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\ojdbc6.jar
+[INFO] [14:19:58.377] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\postgresql-9.4.1209.jar
+[INFO] [14:19:58.377] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\slf4j-api-1.7.25.jar
+[INFO] [14:19:58.378] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\sqlite-jdbc-3.19.3.jar
+[INFO] [14:19:58.378] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\sqlite-jdbc-3.8.11.2.jar
+[INFO] [14:19:58.378] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\sqljdbc4-4.0.jar
+[INFO] [14:19:58.412] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.DbUtil.loadDbDriver:228 --> load driver class: com.mysql.cj.jdbc.Driver@1e61078d
+[INFO] [14:19:58.413] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.DbUtil.getConnectionUrlWithSchema:214 --> getConnectionUrlWithSchema, connection url: jdbc:mysql://192.168.25.180:3306/waimai?serverTimezone=UTC&useUnicode=true&useSSL=false&characterEncoding=utf8
+[INFO] [14:19:58.732] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.DbUtil.getConnection:139 --> getConnection, connection url: com.mysql.cj.jdbc.ConnectionImpl@6f53882e
+[INFO] [14:21:00.858] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.findConnectorLibPath:215 --> jar resource: jar:file:/D:/mybatis-start/mybatis-generator-gui.jar!/logback.xml
+[INFO] [14:21:00.859] [JavaFX Application Thread] [] com.zzg.mybatis.generator.bridge.MybatisGeneratorBridge.generate:66 --> connectorLibPath: D:\mybatis-start\lib\mysql-connector-java-8.0.11.jar
+[INFO] [14:21:00.863] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.DbUtil.getConnectionUrlWithSchema:214 --> getConnectionUrlWithSchema, connection url: jdbc:mysql://192.168.25.180:3306/waimai?serverTimezone=UTC&useUnicode=true&useSSL=false&characterEncoding=utf8
+[DEBUG] [14:21:01.006] [JavaFX Application Thread] [] org.mybatis.generator.logging.LogFactory.setImplementation:105 --> Logging initialized using 'org.mybatis.generator.logging.slf4j.Slf4jLoggingLogFactory@6184cda8' adapter.
+[DEBUG] [14:21:01.008] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:506 --> Retrieving column information for table "waimai.merchandise"
+[DEBUG] [14:21:01.169] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "id", data type -5, in table "waimai..merchandise"
+[DEBUG] [14:21:01.170] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "name", data type 12, in table "waimai..merchandise"
+[DEBUG] [14:21:01.170] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "price", data type 7, in table "waimai..merchandise"
+[DEBUG] [14:21:01.170] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "description", data type 12, in table "waimai..merchandise"
+[DEBUG] [14:21:01.171] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "score", data type 4, in table "waimai..merchandise"
+[DEBUG] [14:21:01.171] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "b_id", data type -5, in table "waimai..merchandise"
+[DEBUG] [14:21:01.171] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "sort", data type -5, in table "waimai..merchandise"
+[DEBUG] [14:21:01.172] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "isgrounding", data type 4, in table "waimai..merchandise"
+[DEBUG] [14:21:01.172] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "creat_time", data type 93, in table "waimai..merchandise"
+[DEBUG] [14:21:01.172] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "creat_by", data type 12, in table "waimai..merchandise"
+[DEBUG] [14:21:01.173] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "update_time", data type 93, in table "waimai..merchandise"
+[DEBUG] [14:21:01.173] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "update_by", data type 12, in table "waimai..merchandise"
+[INFO] [14:21:08.460] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.findConnectorLibPath:215 --> jar resource: jar:file:/D:/mybatis-start/mybatis-generator-gui.jar!/logback.xml
+[INFO] [14:21:08.461] [JavaFX Application Thread] [] com.zzg.mybatis.generator.bridge.MybatisGeneratorBridge.generate:66 --> connectorLibPath: D:\mybatis-start\lib\mysql-connector-java-8.0.11.jar
+[INFO] [14:21:08.463] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.DbUtil.getConnectionUrlWithSchema:214 --> getConnectionUrlWithSchema, connection url: jdbc:mysql://192.168.25.180:3306/waimai?serverTimezone=UTC&useUnicode=true&useSSL=false&characterEncoding=utf8
+[DEBUG] [14:21:08.601] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:506 --> Retrieving column information for table "waimai.merchandiser"
+[DEBUG] [14:21:08.739] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "id", data type -5, in table "waimai..merchandiser"
+[DEBUG] [14:21:08.739] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "name", data type 12, in table "waimai..merchandiser"
+[DEBUG] [14:21:08.741] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "address", data type 12, in table "waimai..merchandiser"
+[DEBUG] [14:21:08.741] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "phone", data type 12, in table "waimai..merchandiser"
+[DEBUG] [14:21:08.741] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "picture", data type 12, in table "waimai..merchandiser"
+[DEBUG] [14:21:08.742] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "longitude", data type 12, in table "waimai..merchandiser"
+[DEBUG] [14:21:08.742] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "latitude", data type 12, in table "waimai..merchandiser"
+[DEBUG] [14:21:08.742] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "create_time", data type 93, in table "waimai..merchandiser"
+[DEBUG] [14:21:08.743] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "create_by", data type 12, in table "waimai..merchandiser"
+[DEBUG] [14:21:08.743] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "update_time", data type 93, in table "waimai..merchandiser"
+[DEBUG] [14:21:08.744] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "update_by", data type 12, in table "waimai..merchandiser"
+[INFO] [14:21:14.771] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.findConnectorLibPath:215 --> jar resource: jar:file:/D:/mybatis-start/mybatis-generator-gui.jar!/logback.xml
+[INFO] [14:21:14.772] [JavaFX Application Thread] [] com.zzg.mybatis.generator.bridge.MybatisGeneratorBridge.generate:66 --> connectorLibPath: D:\mybatis-start\lib\mysql-connector-java-8.0.11.jar
+[INFO] [14:21:14.773] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.DbUtil.getConnectionUrlWithSchema:214 --> getConnectionUrlWithSchema, connection url: jdbc:mysql://192.168.25.180:3306/waimai?serverTimezone=UTC&useUnicode=true&useSSL=false&characterEncoding=utf8
+[DEBUG] [14:21:14.868] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:506 --> Retrieving column information for table "waimai.merchandise_class"
+[DEBUG] [14:21:14.986] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "id", data type -5, in table "waimai..merchandise_class"
+[DEBUG] [14:21:14.987] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "name", data type 12, in table "waimai..merchandise_class"
+[DEBUG] [14:21:14.988] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "picture", data type 12, in table "waimai..merchandise_class"
+[DEBUG] [14:21:14.990] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "create_time", data type 93, in table "waimai..merchandise_class"
+[DEBUG] [14:21:14.991] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "create_by", data type 12, in table "waimai..merchandise_class"
+[DEBUG] [14:21:14.992] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "update_time", data type 93, in table "waimai..merchandise_class"
+[DEBUG] [14:21:14.992] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "update_by", data type 12, in table "waimai..merchandise_class"

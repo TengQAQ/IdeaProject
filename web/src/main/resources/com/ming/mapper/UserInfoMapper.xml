@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.mapper.UserInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.ming.entity.UserInfo">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="openid" column="openId" jdbcType="VARCHAR"/>
+            <result property="mobile" column="mobile" jdbcType="VARCHAR"/>
+            <result property="nickname" column="nickName" jdbcType="VARCHAR"/>
+            <result property="email" column="email" jdbcType="VARCHAR"/>
+            <result property="sex" column="sex" jdbcType="TINYINT"/>
+            <result property="regTime" column="reg_time" jdbcType="TIMESTAMP"/>
+            <result property="lastLogin" column="last_login" jdbcType="TIMESTAMP"/>
+            <result property="userPoint" column="user_point" jdbcType="INTEGER"/>
+            <result property="receiveDate" column="receive_date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,openId,mobile,
+        nickName,email,sex,
+        reg_time,last_login,user_point,
+        receive_date
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from user_info
+        where  id = #{id,jdbcType=INTEGER} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from user_info
+        where  id = #{id,jdbcType=INTEGER} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ming.entity.UserInfo" useGeneratedKeys="true">
+        insert into user_info
+        ( id,openId,mobile
+        ,nickName,email,sex
+        ,reg_time,last_login,user_point
+        ,receive_date)
+        values (#{id,jdbcType=INTEGER},#{openid,jdbcType=VARCHAR},#{mobile,jdbcType=VARCHAR}
+        ,#{nickname,jdbcType=VARCHAR},#{email,jdbcType=VARCHAR},#{sex,jdbcType=TINYINT}
+        ,#{regTime,jdbcType=TIMESTAMP},#{lastLogin,jdbcType=TIMESTAMP},#{userPoint,jdbcType=INTEGER}
+        ,#{receiveDate,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ming.entity.UserInfo" useGeneratedKeys="true">
+        insert into user_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">id,</if>
+                <if test="openid != null">openId,</if>
+                <if test="mobile != null">mobile,</if>
+                <if test="nickname != null">nickName,</if>
+                <if test="email != null">email,</if>
+                <if test="sex != null">sex,</if>
+                <if test="regTime != null">reg_time,</if>
+                <if test="lastLogin != null">last_login,</if>
+                <if test="userPoint != null">user_point,</if>
+                <if test="receiveDate != null">receive_date,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null">#{id,jdbcType=INTEGER},</if>
+                <if test="openid != null">#{openid,jdbcType=VARCHAR},</if>
+                <if test="mobile != null">#{mobile,jdbcType=VARCHAR},</if>
+                <if test="nickname != null">#{nickname,jdbcType=VARCHAR},</if>
+                <if test="email != null">#{email,jdbcType=VARCHAR},</if>
+                <if test="sex != null">#{sex,jdbcType=TINYINT},</if>
+                <if test="regTime != null">#{regTime,jdbcType=TIMESTAMP},</if>
+                <if test="lastLogin != null">#{lastLogin,jdbcType=TIMESTAMP},</if>
+                <if test="userPoint != null">#{userPoint,jdbcType=INTEGER},</if>
+                <if test="receiveDate != null">#{receiveDate,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ming.entity.UserInfo">
+        update user_info
+        <set>
+                <if test="openid != null">
+                    openId = #{openid,jdbcType=VARCHAR},
+                </if>
+                <if test="mobile != null">
+                    mobile = #{mobile,jdbcType=VARCHAR},
+                </if>
+                <if test="nickname != null">
+                    nickName = #{nickname,jdbcType=VARCHAR},
+                </if>
+                <if test="email != null">
+                    email = #{email,jdbcType=VARCHAR},
+                </if>
+                <if test="sex != null">
+                    sex = #{sex,jdbcType=TINYINT},
+                </if>
+                <if test="regTime != null">
+                    reg_time = #{regTime,jdbcType=TIMESTAMP},
+                </if>
+                <if test="lastLogin != null">
+                    last_login = #{lastLogin,jdbcType=TIMESTAMP},
+                </if>
+                <if test="userPoint != null">
+                    user_point = #{userPoint,jdbcType=INTEGER},
+                </if>
+                <if test="receiveDate != null">
+                    receive_date = #{receiveDate,jdbcType=TIMESTAMP},
+                </if>
+        </set>
+        where   id = #{id,jdbcType=INTEGER} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ming.entity.UserInfo">
+        update user_info
+        set 
+            openId =  #{openid,jdbcType=VARCHAR},
+            mobile =  #{mobile,jdbcType=VARCHAR},
+            nickName =  #{nickname,jdbcType=VARCHAR},
+            email =  #{email,jdbcType=VARCHAR},
+            sex =  #{sex,jdbcType=TINYINT},
+            reg_time =  #{regTime,jdbcType=TIMESTAMP},
+            last_login =  #{lastLogin,jdbcType=TIMESTAMP},
+            user_point =  #{userPoint,jdbcType=INTEGER},
+            receive_date =  #{receiveDate,jdbcType=TIMESTAMP}
+        where   id = #{id,jdbcType=INTEGER} 
+    </update>
+</mapper>

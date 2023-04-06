@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.mapper.HxzyExamGoodsCategoryMapper">
+
+    <resultMap id="BaseResultMap" type="com.ming.entity.HxzyExamGoodsCategory">
+            <id property="categoryId" column="a_category_id" jdbcType="BIGINT"/>
+            <result property="categoryLevel" column="a_category_level" jdbcType="TINYINT"/>
+            <result property="parentId" column="a_parent_id" jdbcType="BIGINT"/>
+            <result property="categoryName" column="a_category_name" jdbcType="VARCHAR"/>
+            <result property="categoryRank" column="a_category_rank" jdbcType="INTEGER"/>
+            <result property="isDeleted" column="a_is_deleted" jdbcType="TINYINT"/>
+            <result property="createTime" column="a_create_time" jdbcType="TIMESTAMP"/>
+            <result property="createUser" column="a_create_user" jdbcType="INTEGER"/>
+            <result property="updateTime" column="a_update_time" jdbcType="TIMESTAMP"/>
+            <result property="updateUser" column="a_update_user" jdbcType="INTEGER"/>
+            <collection property="children" ofType="com.ming.entity.HxzyExamGoodsCategory">
+                <id property="categoryId" column="b_category_id" jdbcType="BIGINT"/>
+                <result property="categoryLevel" column="b_category_level" jdbcType="TINYINT"/>
+                <result property="parentId" column="b_parent_id" jdbcType="BIGINT"/>
+                <result property="categoryName" column="b_category_name" jdbcType="VARCHAR"/>
+                <result property="categoryRank" column="b_category_rank" jdbcType="INTEGER"/>
+                <result property="isDeleted" column="b_is_deleted" jdbcType="TINYINT"/>
+                <result property="createTime" column="b_create_time" jdbcType="TIMESTAMP"/>
+                <result property="createUser" column="b_create_user" jdbcType="INTEGER"/>
+                <result property="updateTime" column="b_update_time" jdbcType="TIMESTAMP"/>
+                <result property="updateUser" column="b_update_user" jdbcType="INTEGER"/>
+                <collection property="children" ofType="com.ming.entity.HxzyExamGoodsCategory">
+                    <id property="categoryId" column="c_category_id" jdbcType="BIGINT"/>
+                    <result property="categoryLevel" column="c_category_level" jdbcType="TINYINT"/>
+                    <result property="parentId" column="c_parent_id" jdbcType="BIGINT"/>
+                    <result property="categoryName" column="c_category_name" jdbcType="VARCHAR"/>
+                    <result property="categoryRank" column="c_category_rank" jdbcType="INTEGER"/>
+                    <result property="isDeleted" column="c_is_deleted" jdbcType="TINYINT"/>
+                    <result property="createTime" column="c_create_time" jdbcType="TIMESTAMP"/>
+                    <result property="createUser" column="c_create_user" jdbcType="INTEGER"/>
+                    <result property="updateTime" column="c_update_time" jdbcType="TIMESTAMP"/>
+                    <result property="updateUser" column="c_update_user" jdbcType="INTEGER"/>
+                </collection>
+            </collection>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        category_id,category_level,parent_id,
+        category_name,category_rank,is_deleted,
+        create_time,create_user,update_time,
+        update_user
+    </sql>
+
+    <sql id="Select_All_List">
+        a.category_name a_category_name,
+            a.category_id a_category_id,
+            a.category_rank a_category_rank,
+            a.category_level a_category_level,
+            a.parent_id a_parent_id,
+            a.create_time a_create_time,
+            b.category_name b_category_name,
+            b.category_id b_category_id,
+            b.category_rank b_category_rank,
+            b.category_level b_category_level,
+            b.parent_id b_parent_id,
+            b.create_time b_create_time,
+            c.category_name c_category_name,
+            c.category_id c_category_id,
+            c.category_rank c_category_rank,
+            c.category_level c_category_level,
+            c.parent_id c_parent_id,
+            c.create_time c_create_time
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from hxzy_exam_goods_category
+        where  category_id = #{categoryId,jdbcType=BIGINT} 
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT
+            <include refid="Select_All_List"/>
+        FROM
+            hxzy_exam_goods_category a
+                LEFT JOIN hxzy_exam_goods_category b ON a.category_id = b.parent_id
+                LEFT JOIN hxzy_exam_goods_category c ON b.category_id = c.parent_id
+        WHERE
+            a.category_level = 1
+        ORDER BY
+            a.category_rank DESC,
+            b.category_rank DESC,
+            c.category_rank DESC
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from hxzy_exam_goods_category
+        where  category_id = #{categoryId,jdbcType=BIGINT} 
+    </delete>
+    <delete id="DeleteOneRank" parameterType="java.lang.Long">
+        DELETE
+        FROM
+            hxzy_exam_goods_category
+        WHERE
+                category_id IN (
+                SELECT
+                    c_id category_id
+                FROM
+                    (
+                        SELECT
+			                c.category_id c_id
+                        FROM
+                            hxzy_exam_goods_category a
+                            LEFT JOIN hxzy_exam_goods_category b ON a.category_id = b.parent_id
+                            LEFT JOIN hxzy_exam_goods_category c ON b.category_id = c.parent_id
+                        WHERE
+                            a.category_id = #{param1}
+                    ) As newtabledata
+            )
+    </delete>
+    <delete id="DeleteTwoRank" parameterType="java.lang.Long">
+        DELETE
+        FROM
+            hxzy_exam_goods_category
+        WHERE
+                category_id IN (
+                SELECT
+                    c_id category_id
+                FROM
+                    (
+                        SELECT
+                            b.category_id c_id
+                        FROM
+                            hxzy_exam_goods_category a
+                            LEFT JOIN hxzy_exam_goods_category b ON a.category_id = b.parent_id
+                        WHERE
+                            a.category_id = #{param1}
+                    ) As newtabledata
+            )
+    </delete>
+    <delete id="DeleteThreeRank" parameterType="java.lang.Long">
+        DELETE
+        FROM
+            hxzy_exam_goods_category
+        WHERE
+            category_id = #{param1}
+    </delete>
+    <insert id="insert" keyColumn="category_id" keyProperty="categoryId" parameterType="com.ming.entity.HxzyExamGoodsCategory" useGeneratedKeys="true">
+        insert into hxzy_exam_goods_category
+        ( category_id,category_level,parent_id
+        ,category_name,category_rank,is_deleted
+        ,create_time,create_user,update_time
+        ,update_user)
+        values (#{categoryId,jdbcType=BIGINT},#{categoryLevel,jdbcType=TINYINT},#{parentId,jdbcType=BIGINT}
+        ,#{categoryName,jdbcType=VARCHAR},#{categoryRank,jdbcType=INTEGER},#{isDeleted,jdbcType=TINYINT}
+        ,#{createTime,jdbcType=TIMESTAMP},#{createUser,jdbcType=INTEGER},#{updateTime,jdbcType=TIMESTAMP}
+        ,#{updateUser,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" keyColumn="category_id" keyProperty="categoryId" parameterType="com.ming.entity.HxzyExamGoodsCategory" useGeneratedKeys="true">
+        insert into hxzy_exam_goods_category
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="categoryId != null">category_id,</if>
+                <if test="categoryLevel != null">category_level,</if>
+                <if test="parentId != null">parent_id,</if>
+                <if test="categoryName != null">category_name,</if>
+                <if test="categoryRank != null">category_rank,</if>
+                <if test="isDeleted != null">is_deleted,</if>
+                <if test="createTime != null">create_time,</if>
+                <if test="createUser != null">create_user,</if>
+                <if test="updateTime != null">update_time,</if>
+                <if test="updateUser != null">update_user,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="categoryId != null">#{categoryId,jdbcType=BIGINT},</if>
+                <if test="categoryLevel != null">#{categoryLevel,jdbcType=TINYINT},</if>
+                <if test="parentId != null">#{parentId,jdbcType=BIGINT},</if>
+                <if test="categoryName != null">#{categoryName,jdbcType=VARCHAR},</if>
+                <if test="categoryRank != null">#{categoryRank,jdbcType=INTEGER},</if>
+                <if test="isDeleted != null">#{isDeleted,jdbcType=TINYINT},</if>
+                <if test="createTime != null">#{createTime,jdbcType=TIMESTAMP},</if>
+                <if test="createUser != null">#{createUser,jdbcType=INTEGER},</if>
+                <if test="updateTime != null">#{updateTime,jdbcType=TIMESTAMP},</if>
+                <if test="updateUser != null">#{updateUser,jdbcType=INTEGER},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ming.entity.HxzyExamGoodsCategory">
+        update hxzy_exam_goods_category
+        <set>
+                <if test="categoryLevel != null">
+                    category_level = #{categoryLevel,jdbcType=TINYINT},
+                </if>
+                <if test="parentId != null">
+                    parent_id = #{parentId,jdbcType=BIGINT},
+                </if>
+                <if test="categoryName != null">
+                    category_name = #{categoryName,jdbcType=VARCHAR},
+                </if>
+                <if test="categoryRank != null">
+                    category_rank = #{categoryRank,jdbcType=INTEGER},
+                </if>
+                <if test="isDeleted != null">
+                    is_deleted = #{isDeleted,jdbcType=TINYINT},
+                </if>
+                <if test="createTime != null">
+                    create_time = #{createTime,jdbcType=TIMESTAMP},
+                </if>
+                <if test="createUser != null">
+                    create_user = #{createUser,jdbcType=INTEGER},
+                </if>
+                <if test="updateTime != null">
+                    update_time = #{updateTime,jdbcType=TIMESTAMP},
+                </if>
+                <if test="updateUser != null">
+                    update_user = #{updateUser,jdbcType=INTEGER},
+                </if>
+        </set>
+        where   category_id = #{categoryId,jdbcType=BIGINT} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ming.entity.HxzyExamGoodsCategory">
+        update hxzy_exam_goods_category
+        set 
+            category_level =  #{categoryLevel,jdbcType=TINYINT},
+            parent_id =  #{parentId,jdbcType=BIGINT},
+            category_name =  #{categoryName,jdbcType=VARCHAR},
+            category_rank =  #{categoryRank,jdbcType=INTEGER},
+            is_deleted =  #{isDeleted,jdbcType=TINYINT},
+            create_time =  #{createTime,jdbcType=TIMESTAMP},
+            create_user =  #{createUser,jdbcType=INTEGER},
+            update_time =  #{updateTime,jdbcType=TIMESTAMP},
+            update_user =  #{updateUser,jdbcType=INTEGER}
+        where   category_id = #{categoryId,jdbcType=BIGINT} 
+    </update>
+</mapper>

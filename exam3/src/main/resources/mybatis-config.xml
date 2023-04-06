@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--定义了mybatis全局配置文件具有标签-->
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!--mybatis全局配置文件的根节点-->
+<configuration>
+    <!--加载自定义的全局配置文件-->
+    <properties resource="global.properties" />
+
+    <!--关于mybatis的配置-->
+    <settings>
+        <!--在控制台输出mybatis执行日志-->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
+    <typeAliases>
+        <!--扫描包，将包中类设置为类的别名-->
+        <package name="com.hxzy.entity"/>
+    </typeAliases>
+    <plugins>
+        <!--配置分页插件-->
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!--告诉分页插件，当前使用的数据库为mysql，可以省略-->
+            <property name="helperDialect" value="mysql"/>
+        </plugin>
+    </plugins>
+
+
+    <!--数据源环境配置-->
+    <environments default="${env}">
+        <!--开发环境-->
+        <environment id="dev">
+            <!--事务管理-->
+            <transactionManager type="JDBC" />
+            <!--
+                数据源，可以使用POOLED内置的连接池，也可以自定义连接池
+                自定义连接池，必须要实现org.apache.ibatis.datasource.DataSourceFactory
+            -->
+            <dataSource type="com.hxzy.utils.DataSourceHandler" >
+
+                <property name="driverClassName" value="${pool.driverClassName}"/>
+                <property name="url" value="${pool.url}"/>
+                <property name="username" value="${pool.username}"/>
+                <property name="password" value="${pool.password}"/>
+                <property name="maxActive" value="${pool.maxActive}"/>
+                <property name="initialSize" value="${pool.initialSize}"/>
+            </dataSource>
+        </environment>
+
+        <!--生产环境-->
+        <environment id="product">
+            <transactionManager type="JDBC"/>
+            <dataSource type="com.hxzy.util.DataSourceHandler">
+                <property name="driverClassName" value="${pool.driverClassName}"/>
+                <property name="url" value="jdbc:mysql://110.41.128.88:3306/test"/>
+                <property name="username" value="${pool.username}"/>
+                <property name="password" value="${pool.password}"/>
+                <property name="maxActive" value="${pool.maxActive}"/>
+                <property name="initialSize" value="${pool.initialSize}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--注册mapper映射器-->
+    <mappers>
+        <package name="com.hxzy.mapper"/>
+    </mappers>
+</configuration>

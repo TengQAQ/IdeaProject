@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.mapper.AddrInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.ming.entity.AddrInfo">
+            <id property="addrId" column="addr_id" jdbcType="INTEGER"/>
+            <result property="addrPreId" column="addr_pre_id" jdbcType="INTEGER"/>
+            <result property="addrInfo" column="addr_info" jdbcType="VARCHAR"/>
+            <result property="lev" column="lev" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="ResultMap" type="com.ming.entity.AddrInfo">
+        <id property="addrId" column="t1_addr_id" jdbcType="INTEGER"/>
+        <result property="addrPreId" column="t1_addr_pre_id" jdbcType="INTEGER"/>
+        <result property="addrInfo" column="t1_addr_info" jdbcType="VARCHAR"/>
+        <result property="lev" column="t1_lev" jdbcType="INTEGER"/>
+        <collection property="children" ofType="com.ming.entity.AddrInfo">
+            <id property="addrId" column="t2_addr_id" jdbcType="INTEGER"/>
+            <result property="addrPreId" column="t2_addr_pre_id" jdbcType="INTEGER"/>
+            <result property="addrInfo" column="t2_addr_info" jdbcType="VARCHAR"/>
+            <result property="lev" column="t2_lev" jdbcType="INTEGER"/>
+            <collection property="children" ofType="com.ming.entity.AddrInfo">
+                <id property="addrId" column="t3_addr_id" jdbcType="INTEGER"/>
+                <result property="addrPreId" column="t3_addr_pre_id" jdbcType="INTEGER"/>
+                <result property="addrInfo" column="t3_addr_info" jdbcType="VARCHAR"/>
+                <result property="lev" column="t3_lev" jdbcType="INTEGER"/>
+            </collection>
+        </collection>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        addr_id,addr_pre_id,addr_info,
+        lev
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from addr_info
+        where  addr_id = #{addrId,jdbcType=INTEGER} 
+    </select>
+    <select id="allAddrInfo" resultMap="ResultMap">
+        SELECT
+        t1.addr_id t1_addr_id,
+        t1.addr_info t1_addr_info,
+        t1.addr_pre_id t1_addr_pre_id,
+        t1.lev t1_lev,
+        t2.addr_id t2_addr_id,
+        t2.addr_info t2_addr_info,
+        t2.addr_pre_id t2_addr_pre_id,
+        t2.lev t2_lev,
+        t3.addr_id t3_addr_id,
+        t3.addr_info t3_addr_info,
+        t3.addr_pre_id t3_addr_pre_id,
+        t3.lev t3_lev
+        FROM
+        `addr_info` t1
+        LEFT JOIN addr_info t2 ON t1.addr_id = t2.addr_pre_id
+        LEFT JOIN addr_info t3 ON t2.addr_id = t3.addr_pre_id
+        where t1.lev =1
+        <if test="name !=null">
+            having t1.addr_info = #{name} or t2.addr_info = #{name} or t3.addr_info = #{name}
+        </if>
+
+    </select>
+    <select id="selectByName"></select>
+
+    <delete id="deleteByPrimaryKey">
+        delete from addr_info
+        where  addr_id = #{param1}
+    </delete>
+    <insert id="insert" keyColumn="addr_id" keyProperty="addrId" parameterType="com.ming.entity.AddrInfo" useGeneratedKeys="true">
+        insert into addr_info
+        ( addr_id,addr_pre_id,addr_info
+        ,lev)
+        values (#{addrId,jdbcType=INTEGER},#{addrPreId,jdbcType=INTEGER},#{addrInfo,jdbcType=VARCHAR}
+        ,#{lev,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" keyColumn="addr_id" keyProperty="addrId" parameterType="com.ming.entity.AddrInfo" useGeneratedKeys="true">
+        insert into addr_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="addrId != null">addr_id,</if>
+                <if test="addrPreId != null">addr_pre_id,</if>
+                <if test="addrInfo != null">addr_info,</if>
+                <if test="lev != null">lev,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="addrId != null">#{addrId,jdbcType=INTEGER},</if>
+                <if test="addrPreId != null">#{addrPreId,jdbcType=INTEGER},</if>
+                <if test="addrInfo != null">#{addrInfo,jdbcType=VARCHAR},</if>
+                <if test="lev != null">#{lev,jdbcType=INTEGER},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ming.entity.AddrInfo">
+        update addr_info
+        <set>
+                <if test="addrPreId != null">
+                    addr_pre_id = #{addrPreId,jdbcType=INTEGER},
+                </if>
+                <if test="addrInfo != null">
+                    addr_info = #{addrInfo,jdbcType=VARCHAR},
+                </if>
+                <if test="lev != null">
+                    lev = #{lev,jdbcType=INTEGER},
+                </if>
+        </set>
+        where   addr_id = #{addrId,jdbcType=INTEGER} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ming.entity.AddrInfo">
+        update addr_info
+        set 
+            addr_pre_id =  #{addrPreId,jdbcType=INTEGER},
+            addr_info =  #{addrInfo,jdbcType=VARCHAR},
+            lev =  #{lev,jdbcType=INTEGER}
+        where   addr_id = #{addrId,jdbcType=INTEGER} 
+    </update>
+</mapper>

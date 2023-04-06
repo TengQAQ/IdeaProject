@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.mapper.HxzyExamProductMapper">
+
+    <resultMap id="BaseResultMap" type="com.ming.entity.HxzyExamProduct">
+            <id property="id" column="id_" jdbcType="VARCHAR"/>
+            <result property="name" column="name_" jdbcType="VARCHAR"/>
+            <result property="standard" column="standard_" jdbcType="VARCHAR"/>
+            <result property="unit" column="unit" jdbcType="VARCHAR"/>
+            <result property="categoryId" column="category_id_" jdbcType="VARCHAR"/>
+            <result property="intro" column="intro_" jdbcType="VARCHAR"/>
+            <result property="buyPrice" column="buy_price_" jdbcType="DECIMAL"/>
+            <result property="salePrice" column="sale_price_" jdbcType="DECIMAL"/>
+            <result property="isDel" column="is_del" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time_" jdbcType="TIMESTAMP"/>
+            <result property="modifyTime" column="modify_time_" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id_,name_,standard_,
+        unit,category_id_,intro_,
+        buy_price_,sale_price_,is_del,
+        create_time_,modify_time_
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from hxzy_exam_product
+        where  id_ = #{id,jdbcType=VARCHAR} 
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from hxzy_exam_product
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from hxzy_exam_product
+        where  id_ = #{id,jdbcType=VARCHAR} 
+    </delete>
+    <insert id="insert" keyColumn="id_" keyProperty="id" parameterType="com.ming.entity.HxzyExamProduct" useGeneratedKeys="true">
+        insert into hxzy_exam_product
+        ( id_,name_,standard_
+        ,unit,category_id_,intro_
+        ,buy_price_,sale_price_,is_del
+        ,create_time_,modify_time_)
+        values (#{id,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{standard,jdbcType=VARCHAR}
+        ,#{unit,jdbcType=VARCHAR},#{categoryId,jdbcType=VARCHAR},#{intro,jdbcType=VARCHAR}
+        ,#{buyPrice,jdbcType=DECIMAL},#{salePrice,jdbcType=DECIMAL},#{isDel,jdbcType=INTEGER}
+        ,#{createTime,jdbcType=TIMESTAMP},#{modifyTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id_" keyProperty="id" parameterType="com.ming.entity.HxzyExamProduct" useGeneratedKeys="true">
+        insert into hxzy_exam_product
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">id_,</if>
+                <if test="name != null">name_,</if>
+                <if test="standard != null">standard_,</if>
+                <if test="unit != null">unit,</if>
+                <if test="categoryId != null">category_id_,</if>
+                <if test="intro != null">intro_,</if>
+                <if test="buyPrice != null">buy_price_,</if>
+                <if test="salePrice != null">sale_price_,</if>
+                <if test="isDel != null">is_del,</if>
+                <if test="createTime != null">create_time_,</if>
+                <if test="modifyTime != null">modify_time_,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null">#{id,jdbcType=VARCHAR},</if>
+                <if test="name != null">#{name,jdbcType=VARCHAR},</if>
+                <if test="standard != null">#{standard,jdbcType=VARCHAR},</if>
+                <if test="unit != null">#{unit,jdbcType=VARCHAR},</if>
+                <if test="categoryId != null">#{categoryId,jdbcType=VARCHAR},</if>
+                <if test="intro != null">#{intro,jdbcType=VARCHAR},</if>
+                <if test="buyPrice != null">#{buyPrice,jdbcType=DECIMAL},</if>
+                <if test="salePrice != null">#{salePrice,jdbcType=DECIMAL},</if>
+                <if test="isDel != null">#{isDel,jdbcType=INTEGER},</if>
+                <if test="createTime != null">#{createTime,jdbcType=TIMESTAMP},</if>
+                <if test="modifyTime != null">#{modifyTime,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ming.entity.HxzyExamProduct">
+        update hxzy_exam_product
+        <set>
+                <if test="name != null">
+                    name_ = #{name,jdbcType=VARCHAR},
+                </if>
+                <if test="standard != null">
+                    standard_ = #{standard,jdbcType=VARCHAR},
+                </if>
+                <if test="unit != null">
+                    unit = #{unit,jdbcType=VARCHAR},
+                </if>
+                <if test="categoryId != null">
+                    category_id_ = #{categoryId,jdbcType=VARCHAR},
+                </if>
+                <if test="intro != null">
+                    intro_ = #{intro,jdbcType=VARCHAR},
+                </if>
+                <if test="buyPrice != null">
+                    buy_price_ = #{buyPrice,jdbcType=DECIMAL},
+                </if>
+                <if test="salePrice != null">
+                    sale_price_ = #{salePrice,jdbcType=DECIMAL},
+                </if>
+                <if test="isDel != null">
+                    is_del = #{isDel,jdbcType=INTEGER},
+                </if>
+                <if test="createTime != null">
+                    create_time_ = #{createTime,jdbcType=TIMESTAMP},
+                </if>
+                <if test="modifyTime != null">
+                    modify_time_ = #{modifyTime,jdbcType=TIMESTAMP},
+                </if>
+        </set>
+        where   id_ = #{id,jdbcType=VARCHAR} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ming.entity.HxzyExamProduct">
+        update hxzy_exam_product
+        set 
+            name_ =  #{name,jdbcType=VARCHAR},
+            standard_ =  #{standard,jdbcType=VARCHAR},
+            unit =  #{unit,jdbcType=VARCHAR},
+            category_id_ =  #{categoryId,jdbcType=VARCHAR},
+            intro_ =  #{intro,jdbcType=VARCHAR},
+            buy_price_ =  #{buyPrice,jdbcType=DECIMAL},
+            sale_price_ =  #{salePrice,jdbcType=DECIMAL},
+            is_del =  #{isDel,jdbcType=INTEGER},
+            create_time_ =  #{createTime,jdbcType=TIMESTAMP},
+            modify_time_ =  #{modifyTime,jdbcType=TIMESTAMP}
+        where   id_ = #{id,jdbcType=VARCHAR} 
+    </update>
+</mapper>

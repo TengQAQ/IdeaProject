@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxzy.mapper.ElementaryMapper">
+
+    <resultMap id="BaseResultMap" type="com.hxzy.entity.Elementary">
+            <id property="elementaryId" column="elementary_id" jdbcType="VARCHAR"/>
+            <result property="numberId" column="number_id" jdbcType="VARCHAR"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="age" column="age" jdbcType="INTEGER"/>
+            <result property="nation" column="nation" jdbcType="VARCHAR"/>
+            <result property="place" column="place" jdbcType="VARCHAR"/>
+            <result property="occupation" column="occupation" jdbcType="VARCHAR"/>
+            <result property="culture" column="culture" jdbcType="VARCHAR"/>
+            <result property="gender" column="gender" jdbcType="VARCHAR"/>
+            <result property="marriageAge" column="marriage_age" jdbcType="INTEGER"/>
+            <result property="progestationHeight" column="progestation_height" jdbcType="DOUBLE"/>
+            <result property="progestationWeight" column="progestation_weight" jdbcType="DOUBLE"/>
+            <result property="rearWeight" column="rear_weight" jdbcType="DOUBLE"/>
+            <result property="bloodOtherId" column="blood_other_id" jdbcType="INTEGER"/>
+            <result property="progestationBmi" column="progestation_BMI" jdbcType="DOUBLE"/>
+            <result property="rearBmi" column="rear_BMI" jdbcType="DOUBLE"/>
+            <result property="smokingOtherId" column="smoking_other_id" jdbcType="INTEGER"/>
+            <result property="smokingQuantity" column="smoking_quantity" jdbcType="VARCHAR"/>
+            <result property="drinkOtherId" column="drink_other_id" jdbcType="INTEGER"/>
+            <result property="drinkQuantity" column="drink_quantity" jdbcType="VARCHAR"/>
+            <result property="hrOtherId" column="hr_other_id" jdbcType="INTEGER"/>
+            <result property="marriageOtherId" column="marriage_other_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        elementary_id,number_id,name,
+        age,nation,place,
+        occupation,culture,gender,
+        marriage_age,progestation_height,progestation_weight,
+        rear_weight,blood_other_id,progestation_BMI,
+        rear_BMI,smoking_other_id,smoking_quantity,
+        drink_other_id,drink_quantity,hr_other_id,
+        marriage_other_id
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from elementary
+        where  elementary_id = #{elementaryId,jdbcType=VARCHAR} 
+    </select>
+    <select id="SelectAllElementary" parameterType="com.hxzy.Dto.SearchDto" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from elementary
+        <where>
+            <if test="occupation != null">
+                and occupation = #{occupation,jdbcType=VARCHAR}
+            </if>
+            <if test="marriageOtherId != null">
+                and marriage_other_id = #{marriageOtherId,jdbcType=INTEGER}
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from elementary
+        where  elementary_id = #{elementaryId,jdbcType=VARCHAR} 
+    </delete>
+    <insert id="insert" keyColumn="elementary_id" keyProperty="elementaryId" parameterType="com.hxzy.entity.Elementary" useGeneratedKeys="true">
+        insert into elementary
+        ( elementary_id,number_id,name
+        ,age,nation,place
+        ,occupation,culture,gender
+        ,marriage_age,progestation_height,progestation_weight
+        ,rear_weight,blood_other_id,progestation_BMI
+        ,rear_BMI,smoking_other_id,smoking_quantity
+        ,drink_other_id,drink_quantity,hr_other_id
+        ,marriage_other_id)
+        values (#{elementaryId,jdbcType=VARCHAR},#{numberId,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR}
+        ,#{age,jdbcType=INTEGER},#{nation,jdbcType=VARCHAR},#{place,jdbcType=VARCHAR}
+        ,#{occupation,jdbcType=VARCHAR},#{culture,jdbcType=VARCHAR},#{gender,jdbcType=VARCHAR}
+        ,#{marriageAge,jdbcType=INTEGER},#{progestationHeight,jdbcType=DOUBLE},#{progestationWeight,jdbcType=DOUBLE}
+        ,#{rearWeight,jdbcType=DOUBLE},#{bloodOtherId,jdbcType=INTEGER},#{progestationBmi,jdbcType=DOUBLE}
+        ,#{rearBmi,jdbcType=DOUBLE},#{smokingOtherId,jdbcType=INTEGER},#{smokingQuantity,jdbcType=VARCHAR}
+        ,#{drinkOtherId,jdbcType=INTEGER},#{drinkQuantity,jdbcType=VARCHAR},#{hrOtherId,jdbcType=INTEGER}
+        ,#{marriageOtherId,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" keyColumn="elementary_id" keyProperty="elementaryId" parameterType="com.hxzy.entity.Elementary" useGeneratedKeys="true">
+        insert into elementary
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="elementaryId != null">elementary_id,</if>
+                <if test="numberId != null">number_id,</if>
+                <if test="name != null">name,</if>
+                <if test="age != null">age,</if>
+                <if test="nation != null">nation,</if>
+                <if test="place != null">place,</if>
+                <if test="occupation != null">occupation,</if>
+                <if test="culture != null">culture,</if>
+                <if test="gender != null">gender,</if>
+                <if test="marriageAge != null">marriage_age,</if>
+                <if test="progestationHeight != null">progestation_height,</if>
+                <if test="progestationWeight != null">progestation_weight,</if>
+                <if test="rearWeight != null">rear_weight,</if>
+                <if test="bloodOtherId != null">blood_other_id,</if>
+                <if test="progestationBmi != null">progestation_BMI,</if>
+                <if test="rearBmi != null">rear_BMI,</if>
+                <if test="smokingOtherId != null">smoking_other_id,</if>
+                <if test="smokingQuantity != null">smoking_quantity,</if>
+                <if test="drinkOtherId != null">drink_other_id,</if>
+                <if test="drinkQuantity != null">drink_quantity,</if>
+                <if test="hrOtherId != null">hr_other_id,</if>
+                <if test="marriageOtherId != null">marriage_other_id,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="elementaryId != null">#{elementaryId,jdbcType=VARCHAR},</if>
+                <if test="numberId != null">#{numberId,jdbcType=VARCHAR},</if>
+                <if test="name != null">#{name,jdbcType=VARCHAR},</if>
+                <if test="age != null">#{age,jdbcType=INTEGER},</if>
+                <if test="nation != null">#{nation,jdbcType=VARCHAR},</if>
+                <if test="place != null">#{place,jdbcType=VARCHAR},</if>
+                <if test="occupation != null">#{occupation,jdbcType=VARCHAR},</if>
+                <if test="culture != null">#{culture,jdbcType=VARCHAR},</if>
+                <if test="gender != null">#{gender,jdbcType=VARCHAR},</if>
+                <if test="marriageAge != null">#{marriageAge,jdbcType=INTEGER},</if>
+                <if test="progestationHeight != null">#{progestationHeight,jdbcType=DOUBLE},</if>
+                <if test="progestationWeight != null">#{progestationWeight,jdbcType=DOUBLE},</if>
+                <if test="rearWeight != null">#{rearWeight,jdbcType=DOUBLE},</if>
+                <if test="bloodOtherId != null">#{bloodOtherId,jdbcType=INTEGER},</if>
+                <if test="progestationBmi != null">#{progestationBmi,jdbcType=DOUBLE},</if>
+                <if test="rearBmi != null">#{rearBmi,jdbcType=DOUBLE},</if>
+                <if test="smokingOtherId != null">#{smokingOtherId,jdbcType=INTEGER},</if>
+                <if test="smokingQuantity != null">#{smokingQuantity,jdbcType=VARCHAR},</if>
+                <if test="drinkOtherId != null">#{drinkOtherId,jdbcType=INTEGER},</if>
+                <if test="drinkQuantity != null">#{drinkQuantity,jdbcType=VARCHAR},</if>
+                <if test="hrOtherId != null">#{hrOtherId,jdbcType=INTEGER},</if>
+                <if test="marriageOtherId != null">#{marriageOtherId,jdbcType=INTEGER},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hxzy.entity.Elementary">
+        update elementary
+        <set>
+                <if test="numberId != null">
+                    number_id = #{numberId,jdbcType=VARCHAR},
+                </if>
+                <if test="name != null">
+                    name = #{name,jdbcType=VARCHAR},
+                </if>
+                <if test="age != null">
+                    age = #{age,jdbcType=INTEGER},
+                </if>
+                <if test="nation != null">
+                    nation = #{nation,jdbcType=VARCHAR},
+                </if>
+                <if test="place != null">
+                    place = #{place,jdbcType=VARCHAR},
+                </if>
+                <if test="occupation != null">
+                    occupation = #{occupation,jdbcType=VARCHAR},
+                </if>
+                <if test="culture != null">
+                    culture = #{culture,jdbcType=VARCHAR},
+                </if>
+                <if test="gender != null">
+                    gender = #{gender,jdbcType=VARCHAR},
+                </if>
+                <if test="marriageAge != null">
+                    marriage_age = #{marriageAge,jdbcType=INTEGER},
+                </if>
+                <if test="progestationHeight != null">
+                    progestation_height = #{progestationHeight,jdbcType=DOUBLE},
+                </if>
+                <if test="progestationWeight != null">
+                    progestation_weight = #{progestationWeight,jdbcType=DOUBLE},
+                </if>
+                <if test="rearWeight != null">
+                    rear_weight = #{rearWeight,jdbcType=DOUBLE},
+                </if>
+                <if test="bloodOtherId != null">
+                    blood_other_id = #{bloodOtherId,jdbcType=INTEGER},
+                </if>
+                <if test="progestationBmi != null">
+                    progestation_BMI = #{progestationBmi,jdbcType=DOUBLE},
+                </if>
+                <if test="rearBmi != null">
+                    rear_BMI = #{rearBmi,jdbcType=DOUBLE},
+                </if>
+                <if test="smokingOtherId != null">
+                    smoking_other_id = #{smokingOtherId,jdbcType=INTEGER},
+                </if>
+                <if test="smokingQuantity != null">
+                    smoking_quantity = #{smokingQuantity,jdbcType=VARCHAR},
+                </if>
+                <if test="drinkOtherId != null">
+                    drink_other_id = #{drinkOtherId,jdbcType=INTEGER},
+                </if>
+                <if test="drinkQuantity != null">
+                    drink_quantity = #{drinkQuantity,jdbcType=VARCHAR},
+                </if>
+                <if test="hrOtherId != null">
+                    hr_other_id = #{hrOtherId,jdbcType=INTEGER},
+                </if>
+                <if test="marriageOtherId != null">
+                    marriage_other_id = #{marriageOtherId,jdbcType=INTEGER},
+                </if>
+        </set>
+        where   elementary_id = #{elementaryId,jdbcType=VARCHAR} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hxzy.entity.Elementary">
+        update elementary
+        set 
+            number_id =  #{numberId,jdbcType=VARCHAR},
+            name =  #{name,jdbcType=VARCHAR},
+            age =  #{age,jdbcType=INTEGER},
+            nation =  #{nation,jdbcType=VARCHAR},
+            place =  #{place,jdbcType=VARCHAR},
+            occupation =  #{occupation,jdbcType=VARCHAR},
+            culture =  #{culture,jdbcType=VARCHAR},
+            gender =  #{gender,jdbcType=VARCHAR},
+            marriage_age =  #{marriageAge,jdbcType=INTEGER},
+            progestation_height =  #{progestationHeight,jdbcType=DOUBLE},
+            progestation_weight =  #{progestationWeight,jdbcType=DOUBLE},
+            rear_weight =  #{rearWeight,jdbcType=DOUBLE},
+            blood_other_id =  #{bloodOtherId,jdbcType=INTEGER},
+            progestation_BMI =  #{progestationBmi,jdbcType=DOUBLE},
+            rear_BMI =  #{rearBmi,jdbcType=DOUBLE},
+            smoking_other_id =  #{smokingOtherId,jdbcType=INTEGER},
+            smoking_quantity =  #{smokingQuantity,jdbcType=VARCHAR},
+            drink_other_id =  #{drinkOtherId,jdbcType=INTEGER},
+            drink_quantity =  #{drinkQuantity,jdbcType=VARCHAR},
+            hr_other_id =  #{hrOtherId,jdbcType=INTEGER},
+            marriage_other_id =  #{marriageOtherId,jdbcType=INTEGER}
+        where   elementary_id = #{elementaryId,jdbcType=VARCHAR} 
+    </update>
+</mapper>

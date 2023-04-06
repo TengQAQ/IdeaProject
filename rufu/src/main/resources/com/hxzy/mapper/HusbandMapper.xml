@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxzy.mapper.HusbandMapper">
+
+    <resultMap id="BaseResultMap" type="com.hxzy.entity.Husband">
+            <id property="husbandId" column="husband_id" jdbcType="INTEGER"/>
+            <result property="numberId" column="number_id" jdbcType="VARCHAR"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="illness" column="illness" jdbcType="VARCHAR"/>
+            <result property="smokingOtherId" column="smoking_other_id" jdbcType="INTEGER"/>
+            <result property="elementaryId" column="elementary_id" jdbcType="VARCHAR"/>
+            <result property="bloodOtherId" column="blood_other_id" jdbcType="INTEGER"/>
+            <result property="hrOtherId" column="hr_other_id" jdbcType="INTEGER"/>
+            <result property="smokingQuantity" column="smoking_quantity" jdbcType="VARCHAR"/>
+            <result property="drinkOtherId" column="drink_other_id" jdbcType="INTEGER"/>
+            <result property="drinkQuantity" column="drink_quantity" jdbcType="VARCHAR"/>
+            <result property="relationOtherId" column="relation_other_id" jdbcType="INTEGER" />
+            <result property="occupation" column="occupation" jdbcType="INTEGER" />
+<!--            通过关联映射实现子查询-->
+<!--            <association property="occupation"-->
+<!--                         column="occupation"-->
+<!--                         fetchType="lazy"-->
+<!--                         select="com.hxzy.mapper.OtherMapper.selectByTable"/>-->
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        husband_id,number_id,name,
+        occupation,illness,smoking_other_id,
+        elementary_id,blood_other_id,hr_other_id,
+        smoking_quantity,drink_other_id,drink_quantity,
+        relation_other_id
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from husband
+        where  elementary_id = #{id}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from husband
+        where  husband_id = #{husbandId,jdbcType=INTEGER} 
+    </delete>
+    <insert id="insert" keyColumn="husband_id" keyProperty="husbandId" parameterType="com.hxzy.entity.Husband" useGeneratedKeys="true">
+        insert into husband
+        ( husband_id,number_id,name
+        ,occupation,illness,smoking_other_id
+        ,elementary_id,blood_other_id,hr_other_id
+        ,smoking_quantity,drink_other_id,drink_quantity
+        ,relation_other_id)
+        values (#{husbandId,jdbcType=INTEGER},#{numberId,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR}
+        ,#{occupation,jdbcType=VARCHAR},#{illness,jdbcType=VARCHAR},#{smokingOtherId,jdbcType=INTEGER}
+        ,#{elementaryId,jdbcType=VARCHAR},#{bloodOtherId,jdbcType=INTEGER},#{hrOtherId,jdbcType=INTEGER}
+        ,#{smokingQuantity,jdbcType=VARCHAR},#{drinkOtherId,jdbcType=INTEGER},#{drinkQuantity,jdbcType=VARCHAR}
+        ,#{relationOtherId,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" keyColumn="husband_id" keyProperty="husbandId" parameterType="com.hxzy.entity.Husband" useGeneratedKeys="true">
+        insert into husband
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="husbandId != null">husband_id,</if>
+                <if test="numberId != null">number_id,</if>
+                <if test="name != null">name,</if>
+                <if test="occupation != null">occupation,</if>
+                <if test="illness != null">illness,</if>
+                <if test="smokingOtherId != null">smoking_other_id,</if>
+                <if test="elementaryId != null">elementary_id,</if>
+                <if test="bloodOtherId != null">blood_other_id,</if>
+                <if test="hrOtherId != null">hr_other_id,</if>
+                <if test="smokingQuantity != null">smoking_quantity,</if>
+                <if test="drinkOtherId != null">drink_other_id,</if>
+                <if test="drinkQuantity != null">drink_quantity,</if>
+                <if test="relationOtherId != null">relation_other_id,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="husbandId != null">#{husbandId,jdbcType=INTEGER},</if>
+                <if test="numberId != null">#{numberId,jdbcType=VARCHAR},</if>
+                <if test="name != null">#{name,jdbcType=VARCHAR},</if>
+                <if test="occupation != null">#{occupation,jdbcType=VARCHAR},</if>
+                <if test="illness != null">#{illness,jdbcType=VARCHAR},</if>
+                <if test="smokingOtherId != null">#{smokingOtherId,jdbcType=INTEGER},</if>
+                <if test="elementaryId != null">#{elementaryId,jdbcType=VARCHAR},</if>
+                <if test="bloodOtherId != null">#{bloodOtherId,jdbcType=INTEGER},</if>
+                <if test="hrOtherId != null">#{hrOtherId,jdbcType=INTEGER},</if>
+                <if test="smokingQuantity != null">#{smokingQuantity,jdbcType=VARCHAR},</if>
+                <if test="drinkOtherId != null">#{drinkOtherId,jdbcType=INTEGER},</if>
+                <if test="drinkQuantity != null">#{drinkQuantity,jdbcType=VARCHAR},</if>
+                <if test="relationOtherId != null">#{relationOtherId,jdbcType=INTEGER},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hxzy.entity.Husband">
+        update husband
+        <set>
+                <if test="numberId != null">
+                    number_id = #{numberId,jdbcType=VARCHAR},
+                </if>
+                <if test="name != null">
+                    name = #{name,jdbcType=VARCHAR},
+                </if>
+                <if test="occupation != null">
+                    occupation = #{occupation,jdbcType=VARCHAR},
+                </if>
+                <if test="illness != null">
+                    illness = #{illness,jdbcType=VARCHAR},
+                </if>
+                <if test="smokingOtherId != null">
+                    smoking_other_id = #{smokingOtherId,jdbcType=INTEGER},
+                </if>
+                <if test="elementaryId != null">
+                    elementary_id = #{elementaryId,jdbcType=VARCHAR},
+                </if>
+                <if test="bloodOtherId != null">
+                    blood_other_id = #{bloodOtherId,jdbcType=INTEGER},
+                </if>
+                <if test="hrOtherId != null">
+                    hr_other_id = #{hrOtherId,jdbcType=INTEGER},
+                </if>
+                <if test="smokingQuantity != null">
+                    smoking_quantity = #{smokingQuantity,jdbcType=VARCHAR},
+                </if>
+                <if test="drinkOtherId != null">
+                    drink_other_id = #{drinkOtherId,jdbcType=INTEGER},
+                </if>
+                <if test="drinkQuantity != null">
+                    drink_quantity = #{drinkQuantity,jdbcType=VARCHAR},
+                </if>
+                <if test="relationOtherId != null">
+                    relation_other_id = #{relationOtherId,jdbcType=INTEGER},
+                </if>
+        </set>
+        where   husband_id = #{husbandId,jdbcType=INTEGER} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hxzy.entity.Husband">
+        update husband
+        set 
+            number_id =  #{numberId,jdbcType=VARCHAR},
+            name =  #{name,jdbcType=VARCHAR},
+            occupation =  #{occupation,jdbcType=VARCHAR},
+            illness =  #{illness,jdbcType=VARCHAR},
+            smoking_other_id =  #{smokingOtherId,jdbcType=INTEGER},
+            elementary_id =  #{elementaryId,jdbcType=VARCHAR},
+            blood_other_id =  #{bloodOtherId,jdbcType=INTEGER},
+            hr_other_id =  #{hrOtherId,jdbcType=INTEGER},
+            smoking_quantity =  #{smokingQuantity,jdbcType=VARCHAR},
+            drink_other_id =  #{drinkOtherId,jdbcType=INTEGER},
+            drink_quantity =  #{drinkQuantity,jdbcType=VARCHAR},
+            relation_other_id =  #{relationOtherId,jdbcType=INTEGER}
+        where   husband_id = #{husbandId,jdbcType=INTEGER} 
+    </update>
+</mapper>

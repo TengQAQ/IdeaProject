@@ -1,0 +1,12 @@
+{
+  "groups": [
+    {
+      "name": "captcha",
+      "type": "com.hxzy.common.domain.CaptchaProperties",
+      "sourceType": "com.hxzy.common.domain.CaptchaProperties"
+    }
+  ],
+  "properties": [
+  ],
+  "hints": []
+}

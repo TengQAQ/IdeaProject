@@ -1,0 +1,14 @@
+[INFO] [09:07:42.036] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.findConnectorLibPath:215 --> jar resource: jar:file:/D:/IdeaProject/mybatis-start/mybatis-generator-gui.jar!/logback.xml
+[INFO] [09:07:42.058] [JavaFX Application Thread] [] com.zzg.mybatis.generator.bridge.MybatisGeneratorBridge.generate:66 --> connectorLibPath: D:\IdeaProject\mybatis-start\lib\ojdbc6.jar
+[INFO] [09:07:42.058] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.DbUtil.getConnectionUrlWithSchema:214 --> getConnectionUrlWithSchema, connection url: jdbc:oracle:thin:@//192.168.23.180:1521/helowin
+[DEBUG] [09:07:42.208] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:506 --> Retrieving column information for table "HELOWIN..EMPLOYEE"
+[DEBUG] [09:07:42.279] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "ID", data type 3, in table "MING.EMPLOYEE"
+[DEBUG] [09:07:42.281] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "LOGIN_NAME", data type 12, in table "MING.EMPLOYEE"
+[DEBUG] [09:07:42.283] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "LOGIN_PWD", data type 12, in table "MING.EMPLOYEE"
+[DEBUG] [09:07:42.285] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "GENDER", data type 3, in table "MING.EMPLOYEE"
+[DEBUG] [09:07:42.287] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "STATUS", data type 3, in table "MING.EMPLOYEE"
+[DEBUG] [09:07:42.289] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "AVATAR", data type 12, in table "MING.EMPLOYEE"
+[DEBUG] [09:07:42.291] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "CREATE_TIME", data type 93, in table "MING.EMPLOYEE"
+[DEBUG] [09:07:42.292] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "CREATE_BY", data type 12, in table "MING.EMPLOYEE"
+[DEBUG] [09:07:42.294] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "UPDATE_TIME", data type 93, in table "MING.EMPLOYEE"
+[DEBUG] [09:07:42.296] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "UPDATE_BY", data type 12, in table "MING.EMPLOYEE"

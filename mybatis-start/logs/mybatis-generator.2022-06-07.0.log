@@ -1,0 +1,355 @@
+[INFO] [15:29:13.932] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConnectionManager.getConnection:20 --> database FilePath :D:\mybatis-start\.\config\sqlite3.db
+[INFO] [15:30:17.250] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:238 --> jar lib path: D:\mybatis-start\lib
+[INFO] [15:30:17.251] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\commons-beanutils-1.9.2.jar
+[INFO] [15:30:17.252] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\commons-collections-3.2.1.jar
+[INFO] [15:30:17.280] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\commons-io-2.5.jar
+[INFO] [15:30:17.280] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\commons-lang3-3.4.jar
+[INFO] [15:30:17.280] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\commons-logging-1.1.1.jar
+[INFO] [15:30:17.281] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\fastjson-1.2.7.jar
+[INFO] [15:30:17.281] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\hamcrest-core-1.3.jar
+[INFO] [15:30:17.281] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\jsch-0.1.54.jar
+[INFO] [15:30:17.281] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\junit-4.12.jar
+[INFO] [15:30:17.282] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\logback-classic-1.1.2.jar
+[INFO] [15:30:17.282] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\logback-core-1.1.2.jar
+[INFO] [15:30:17.282] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\mybatis-generator-core-1.3.6.jar
+[INFO] [15:30:17.282] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\mybatis-generator-lombok-plugin-1.0.jar
+[INFO] [15:30:17.283] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\mysql-connector-java-5.1.38.jar
+[INFO] [15:30:17.283] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\mysql-connector-java-8.0.11.jar
+[INFO] [15:30:17.283] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\ojdbc6.jar
+[INFO] [15:30:17.283] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\postgresql-9.4.1209.jar
+[INFO] [15:30:17.283] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\slf4j-api-1.7.25.jar
+[INFO] [15:30:17.284] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\sqlite-jdbc-3.19.3.jar
+[INFO] [15:30:17.284] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\sqlite-jdbc-3.8.11.2.jar
+[INFO] [15:30:17.284] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\sqljdbc4-4.0.jar
+[INFO] [15:30:17.333] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.DbUtil.loadDbDriver:228 --> load driver class: com.mysql.jdbc.Driver@68490250
+[INFO] [15:30:17.334] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.DbUtil.getConnectionUrlWithSchema:214 --> getConnectionUrlWithSchema, connection url: jdbc:mysql://192.168.25.180:3306/pmsdb?useUnicode=true&useSSL=false&characterEncoding=utf8
+[ERROR] [15:30:18.721] [JavaFX Application Thread] [] com.zzg.mybatis.generator.controller.MainUIController.lambda$null$7:206 --> Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:1.8.0_151]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source) ~[na:1.8.0_151]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source) ~[na:1.8.0_151]
+	at java.lang.reflect.Constructor.newInstance(Unknown Source) ~[na:1.8.0_151]
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:404) ~[na:na]
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:981) ~[na:na]
+	at com.mysql.jdbc.MysqlIO.readPacket(MysqlIO.java:628) ~[na:na]
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1014) ~[na:na]
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2255) ~[na:na]
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2286) ~[na:na]
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2085) ~[na:na]
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:795) ~[na:na]
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:44) ~[na:na]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:1.8.0_151]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source) ~[na:1.8.0_151]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source) ~[na:1.8.0_151]
+	at java.lang.reflect.Constructor.newInstance(Unknown Source) ~[na:1.8.0_151]
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:404) ~[na:na]
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:400) ~[na:na]
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:327) ~[na:na]
+	at com.zzg.mybatis.generator.util.DbUtil.getConnection(DbUtil.java:138) ~[mybatis-generator-gui.jar:na]
+	at com.zzg.mybatis.generator.util.DbUtil.getTableNames(DbUtil.java:146) ~[mybatis-generator-gui.jar:na]
+	at com.zzg.mybatis.generator.controller.MainUIController.lambda$null$7(MainUIController.java:191) ~[mybatis-generator-gui.jar:na]
+	at com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54) ~[jfxrt.jar:na]
+	at javafx.event.Event.fireEvent(Event.java:198) ~[jfxrt.jar:na]
+	at javafx.scene.Scene$ClickGenerator.postProcess(Scene.java:3470) ~[jfxrt.jar:na]
+	at javafx.scene.Scene$ClickGenerator.access$8100(Scene.java:3398) ~[jfxrt.jar:na]
+	at javafx.scene.Scene$MouseHandler.process(Scene.java:3766) ~[jfxrt.jar:na]
+	at javafx.scene.Scene$MouseHandler.access$1500(Scene.java:3485) ~[jfxrt.jar:na]
+	at javafx.scene.Scene.impl_processMouseEvent(Scene.java:1762) ~[jfxrt.jar:na]
+	at javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2494) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:381) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295) ~[jfxrt.jar:na]
+	at java.security.AccessController.doPrivileged(Native Method) ~[na:1.8.0_151]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$353(GlassViewEventHandler.java:417) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:389) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:416) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.View.handleMouseEvent(View.java:555) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.View.notifyMouse(View.java:937) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.win.WinApplication.lambda$null$147(WinApplication.java:177) ~[jfxrt.jar:na]
+	at java.lang.Thread.run(Unknown Source) ~[na:1.8.0_151]
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method) ~[na:1.8.0_151]
+	at java.net.SocketInputStream.socketRead(Unknown Source) ~[na:1.8.0_151]
+	at java.net.SocketInputStream.read(Unknown Source) ~[na:1.8.0_151]
+	at java.net.SocketInputStream.read(Unknown Source) ~[na:1.8.0_151]
+	at com.mysql.jdbc.util.ReadAheadInputStream.fill(ReadAheadInputStream.java:100) ~[na:na]
+	at com.mysql.jdbc.util.ReadAheadInputStream.readFromUnderlyingStreamIfNecessary(ReadAheadInputStream.java:143) ~[na:na]
+	at com.mysql.jdbc.util.ReadAheadInputStream.read(ReadAheadInputStream.java:173) ~[na:na]
+	at com.mysql.jdbc.MysqlIO.readFully(MysqlIO.java:2954) ~[na:na]
+	at com.mysql.jdbc.MysqlIO.readPacket(MysqlIO.java:560) ~[na:na]
+	... 53 common frames omitted
+[INFO] [15:30:21.258] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.DbUtil.getConnectionUrlWithSchema:214 --> getConnectionUrlWithSchema, connection url: jdbc:mysql://192.168.25.180:3306/pmsdb?useUnicode=true&useSSL=false&characterEncoding=utf8
+[ERROR] [15:30:22.261] [JavaFX Application Thread] [] com.zzg.mybatis.generator.controller.MainUIController.lambda$null$7:206 --> Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:1.8.0_151]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source) ~[na:1.8.0_151]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source) ~[na:1.8.0_151]
+	at java.lang.reflect.Constructor.newInstance(Unknown Source) ~[na:1.8.0_151]
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:404) ~[na:na]
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:981) ~[na:na]
+	at com.mysql.jdbc.MysqlIO.readPacket(MysqlIO.java:628) ~[na:na]
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1014) ~[na:na]
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2255) ~[na:na]
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2286) ~[na:na]
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2085) ~[na:na]
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:795) ~[na:na]
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:44) ~[na:na]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:1.8.0_151]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source) ~[na:1.8.0_151]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source) ~[na:1.8.0_151]
+	at java.lang.reflect.Constructor.newInstance(Unknown Source) ~[na:1.8.0_151]
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:404) ~[na:na]
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:400) ~[na:na]
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:327) ~[na:na]
+	at com.zzg.mybatis.generator.util.DbUtil.getConnection(DbUtil.java:138) ~[mybatis-generator-gui.jar:na]
+	at com.zzg.mybatis.generator.util.DbUtil.getTableNames(DbUtil.java:146) ~[mybatis-generator-gui.jar:na]
+	at com.zzg.mybatis.generator.controller.MainUIController.lambda$null$7(MainUIController.java:191) ~[mybatis-generator-gui.jar:na]
+	at com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54) ~[jfxrt.jar:na]
+	at javafx.event.Event.fireEvent(Event.java:198) ~[jfxrt.jar:na]
+	at javafx.scene.Scene$ClickGenerator.postProcess(Scene.java:3470) ~[jfxrt.jar:na]
+	at javafx.scene.Scene$ClickGenerator.access$8100(Scene.java:3398) ~[jfxrt.jar:na]
+	at javafx.scene.Scene$MouseHandler.process(Scene.java:3766) ~[jfxrt.jar:na]
+	at javafx.scene.Scene$MouseHandler.access$1500(Scene.java:3485) ~[jfxrt.jar:na]
+	at javafx.scene.Scene.impl_processMouseEvent(Scene.java:1762) ~[jfxrt.jar:na]
+	at javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2494) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:381) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295) ~[jfxrt.jar:na]
+	at java.security.AccessController.doPrivileged(Native Method) ~[na:1.8.0_151]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$353(GlassViewEventHandler.java:417) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:389) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:416) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.View.handleMouseEvent(View.java:555) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.View.notifyMouse(View.java:937) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.win.WinApplication.lambda$null$147(WinApplication.java:177) ~[jfxrt.jar:na]
+	at java.lang.Thread.run(Unknown Source) ~[na:1.8.0_151]
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method) ~[na:1.8.0_151]
+	at java.net.SocketInputStream.socketRead(Unknown Source) ~[na:1.8.0_151]
+	at java.net.SocketInputStream.read(Unknown Source) ~[na:1.8.0_151]
+	at java.net.SocketInputStream.read(Unknown Source) ~[na:1.8.0_151]
+	at com.mysql.jdbc.util.ReadAheadInputStream.fill(ReadAheadInputStream.java:100) ~[na:na]
+	at com.mysql.jdbc.util.ReadAheadInputStream.readFromUnderlyingStreamIfNecessary(ReadAheadInputStream.java:143) ~[na:na]
+	at com.mysql.jdbc.util.ReadAheadInputStream.read(ReadAheadInputStream.java:173) ~[na:na]
+	at com.mysql.jdbc.MysqlIO.readFully(MysqlIO.java:2954) ~[na:na]
+	at com.mysql.jdbc.MysqlIO.readPacket(MysqlIO.java:560) ~[na:na]
+	... 53 common frames omitted
+[INFO] [15:30:24.779] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.DbUtil.getConnectionUrlWithSchema:214 --> getConnectionUrlWithSchema, connection url: jdbc:mysql://192.168.25.180:3306/pmsdb?useUnicode=true&useSSL=false&characterEncoding=utf8
+[ERROR] [15:30:25.781] [JavaFX Application Thread] [] com.zzg.mybatis.generator.controller.MainUIController.lambda$null$7:206 --> Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:1.8.0_151]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source) ~[na:1.8.0_151]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source) ~[na:1.8.0_151]
+	at java.lang.reflect.Constructor.newInstance(Unknown Source) ~[na:1.8.0_151]
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:404) ~[na:na]
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:981) ~[na:na]
+	at com.mysql.jdbc.MysqlIO.readPacket(MysqlIO.java:628) ~[na:na]
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1014) ~[na:na]
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2255) ~[na:na]
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2286) ~[na:na]
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2085) ~[na:na]
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:795) ~[na:na]
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:44) ~[na:na]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:1.8.0_151]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source) ~[na:1.8.0_151]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source) ~[na:1.8.0_151]
+	at java.lang.reflect.Constructor.newInstance(Unknown Source) ~[na:1.8.0_151]
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:404) ~[na:na]
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:400) ~[na:na]
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:327) ~[na:na]
+	at com.zzg.mybatis.generator.util.DbUtil.getConnection(DbUtil.java:138) ~[mybatis-generator-gui.jar:na]
+	at com.zzg.mybatis.generator.util.DbUtil.getTableNames(DbUtil.java:146) ~[mybatis-generator-gui.jar:na]
+	at com.zzg.mybatis.generator.controller.MainUIController.lambda$null$7(MainUIController.java:191) ~[mybatis-generator-gui.jar:na]
+	at com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54) ~[jfxrt.jar:na]
+	at javafx.event.Event.fireEvent(Event.java:198) ~[jfxrt.jar:na]
+	at javafx.scene.Scene$ClickGenerator.postProcess(Scene.java:3470) ~[jfxrt.jar:na]
+	at javafx.scene.Scene$ClickGenerator.access$8100(Scene.java:3398) ~[jfxrt.jar:na]
+	at javafx.scene.Scene$MouseHandler.process(Scene.java:3766) ~[jfxrt.jar:na]
+	at javafx.scene.Scene$MouseHandler.access$1500(Scene.java:3485) ~[jfxrt.jar:na]
+	at javafx.scene.Scene.impl_processMouseEvent(Scene.java:1762) ~[jfxrt.jar:na]
+	at javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2494) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:381) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295) ~[jfxrt.jar:na]
+	at java.security.AccessController.doPrivileged(Native Method) ~[na:1.8.0_151]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$353(GlassViewEventHandler.java:417) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:389) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:416) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.View.handleMouseEvent(View.java:555) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.View.notifyMouse(View.java:937) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.win.WinApplication.lambda$null$147(WinApplication.java:177) ~[jfxrt.jar:na]
+	at java.lang.Thread.run(Unknown Source) ~[na:1.8.0_151]
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method) ~[na:1.8.0_151]
+	at java.net.SocketInputStream.socketRead(Unknown Source) ~[na:1.8.0_151]
+	at java.net.SocketInputStream.read(Unknown Source) ~[na:1.8.0_151]
+	at java.net.SocketInputStream.read(Unknown Source) ~[na:1.8.0_151]
+	at com.mysql.jdbc.util.ReadAheadInputStream.fill(ReadAheadInputStream.java:100) ~[na:na]
+	at com.mysql.jdbc.util.ReadAheadInputStream.readFromUnderlyingStreamIfNecessary(ReadAheadInputStream.java:143) ~[na:na]
+	at com.mysql.jdbc.util.ReadAheadInputStream.read(ReadAheadInputStream.java:173) ~[na:na]
+	at com.mysql.jdbc.MysqlIO.readFully(MysqlIO.java:2954) ~[na:na]
+	at com.mysql.jdbc.MysqlIO.readPacket(MysqlIO.java:560) ~[na:na]
+	... 53 common frames omitted
+[INFO] [15:30:27.650] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:238 --> jar lib path: D:\mybatis-start\lib
+[INFO] [15:30:27.651] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\commons-beanutils-1.9.2.jar
+[INFO] [15:30:27.651] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\commons-collections-3.2.1.jar
+[INFO] [15:30:27.652] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\commons-io-2.5.jar
+[INFO] [15:30:27.652] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\commons-lang3-3.4.jar
+[INFO] [15:30:27.652] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\commons-logging-1.1.1.jar
+[INFO] [15:30:27.652] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\fastjson-1.2.7.jar
+[INFO] [15:30:27.653] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\hamcrest-core-1.3.jar
+[INFO] [15:30:27.653] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\jsch-0.1.54.jar
+[INFO] [15:30:27.653] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\junit-4.12.jar
+[INFO] [15:30:27.653] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\logback-classic-1.1.2.jar
+[INFO] [15:30:27.654] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\logback-core-1.1.2.jar
+[INFO] [15:30:27.654] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\mybatis-generator-core-1.3.6.jar
+[INFO] [15:30:27.654] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\mybatis-generator-lombok-plugin-1.0.jar
+[INFO] [15:30:27.654] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\mysql-connector-java-5.1.38.jar
+[INFO] [15:30:27.654] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\mysql-connector-java-8.0.11.jar
+[INFO] [15:30:27.654] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\ojdbc6.jar
+[INFO] [15:30:27.655] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\postgresql-9.4.1209.jar
+[INFO] [15:30:27.655] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\slf4j-api-1.7.25.jar
+[INFO] [15:30:27.655] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\sqlite-jdbc-3.19.3.jar
+[INFO] [15:30:27.655] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\sqlite-jdbc-3.8.11.2.jar
+[INFO] [15:30:27.655] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\sqljdbc4-4.0.jar
+[INFO] [15:30:27.743] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.DbUtil.loadDbDriver:228 --> load driver class: com.mysql.cj.jdbc.Driver@58885a0
+[INFO] [15:30:27.744] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.DbUtil.getConnectionUrlWithSchema:214 --> getConnectionUrlWithSchema, connection url: jdbc:mysql://127.0.0.1:3306/jyzx_competition?serverTimezone=UTC&useUnicode=true&useSSL=false&characterEncoding=utf8
+[INFO] [15:30:28.024] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.DbUtil.getConnection:139 --> getConnection, connection url: com.mysql.cj.jdbc.ConnectionImpl@4bd05702
+[INFO] [15:30:52.659] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.DbUtil.getConnectionUrlWithSchema:214 --> getConnectionUrlWithSchema, connection url: jdbc:mysql://127.0.0.1:3306/jyzx_competition?serverTimezone=UTC&useUnicode=true&useSSL=false&characterEncoding=utf8
+[INFO] [15:30:52.663] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.DbUtil.getConnection:139 --> getConnection, connection url: com.mysql.cj.jdbc.ConnectionImpl@526c5eaf
+[INFO] [15:30:55.562] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.DbUtil.getConnectionUrlWithSchema:214 --> getConnectionUrlWithSchema, connection url: jdbc:mysql://127.0.0.1:3306/jyzx_competition?serverTimezone=UTC&useUnicode=true&useSSL=false&characterEncoding=utf8
+[INFO] [15:30:55.566] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.DbUtil.getConnection:139 --> getConnection, connection url: com.mysql.cj.jdbc.ConnectionImpl@795ec163
+[INFO] [15:31:36.457] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.findConnectorLibPath:215 --> jar resource: jar:file:/D:/mybatis-start/mybatis-generator-gui.jar!/logback.xml
+[INFO] [15:31:36.458] [JavaFX Application Thread] [] com.zzg.mybatis.generator.bridge.MybatisGeneratorBridge.generate:66 --> connectorLibPath: D:\mybatis-start\lib\mysql-connector-java-8.0.11.jar
+[INFO] [15:31:36.461] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.DbUtil.getConnectionUrlWithSchema:214 --> getConnectionUrlWithSchema, connection url: jdbc:mysql://127.0.0.1:3306/jyzx_competition?serverTimezone=UTC&useUnicode=true&useSSL=false&characterEncoding=utf8
+[DEBUG] [15:31:36.660] [JavaFX Application Thread] [] org.mybatis.generator.logging.LogFactory.setImplementation:105 --> Logging initialized using 'org.mybatis.generator.logging.slf4j.Slf4jLoggingLogFactory@7d1988c4' adapter.
+[DEBUG] [15:31:36.677] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:506 --> Retrieving column information for table "jyzx_competition.tb_newbee_mall_goods_info"
+[DEBUG] [15:31:36.753] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "goods_id", data type -5, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[DEBUG] [15:31:36.754] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "goods_name", data type 12, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[DEBUG] [15:31:36.754] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "goods_intro", data type 12, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[DEBUG] [15:31:36.755] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "goods_category_id", data type -5, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[DEBUG] [15:31:36.755] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "goods_cover_img", data type 12, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[DEBUG] [15:31:36.755] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "goods_carousel", data type 12, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[DEBUG] [15:31:36.755] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "goods_detail_content", data type -1, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[DEBUG] [15:31:36.756] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "original_price", data type 4, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[DEBUG] [15:31:36.756] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "selling_price", data type 4, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[DEBUG] [15:31:36.756] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "stock_num", data type 4, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[DEBUG] [15:31:36.756] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "tag", data type 12, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[DEBUG] [15:31:36.757] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "goods_sell_status", data type -6, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[DEBUG] [15:31:36.757] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "create_user", data type 4, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[DEBUG] [15:31:36.757] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "create_time", data type 93, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[DEBUG] [15:31:36.757] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "update_user", data type 4, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[DEBUG] [15:31:36.758] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "update_time", data type 93, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[INFO] [15:32:02.394] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConnectionManager.getConnection:20 --> database FilePath :D:\mybatis-start\.\config\sqlite3.db
+[INFO] [15:32:05.143] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:238 --> jar lib path: D:\mybatis-start\lib
+[INFO] [15:32:05.143] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\commons-beanutils-1.9.2.jar
+[INFO] [15:32:05.144] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\commons-collections-3.2.1.jar
+[INFO] [15:32:05.144] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\commons-io-2.5.jar
+[INFO] [15:32:05.144] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\commons-lang3-3.4.jar
+[INFO] [15:32:05.145] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\commons-logging-1.1.1.jar
+[INFO] [15:32:05.145] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\fastjson-1.2.7.jar
+[INFO] [15:32:05.145] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\hamcrest-core-1.3.jar
+[INFO] [15:32:05.146] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\jsch-0.1.54.jar
+[INFO] [15:32:05.146] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\junit-4.12.jar
+[INFO] [15:32:05.146] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\logback-classic-1.1.2.jar
+[INFO] [15:32:05.146] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\logback-core-1.1.2.jar
+[INFO] [15:32:05.146] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\mybatis-generator-core-1.3.6.jar
+[INFO] [15:32:05.146] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\mybatis-generator-lombok-plugin-1.0.jar
+[INFO] [15:32:05.146] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\mysql-connector-java-5.1.38.jar
+[INFO] [15:32:05.147] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\mysql-connector-java-8.0.11.jar
+[INFO] [15:32:05.147] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\ojdbc6.jar
+[INFO] [15:32:05.148] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\postgresql-9.4.1209.jar
+[INFO] [15:32:05.148] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\slf4j-api-1.7.25.jar
+[INFO] [15:32:05.148] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\sqlite-jdbc-3.19.3.jar
+[INFO] [15:32:05.148] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\sqlite-jdbc-3.8.11.2.jar
+[INFO] [15:32:05.148] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.getAllJDBCDriverJarPaths:242 --> jar file: D:\mybatis-start\lib\sqljdbc4-4.0.jar
+[INFO] [15:32:05.156] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.DbUtil.loadDbDriver:228 --> load driver class: com.mysql.cj.jdbc.Driver@2071cac7
+[INFO] [15:32:05.157] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.DbUtil.getConnectionUrlWithSchema:214 --> getConnectionUrlWithSchema, connection url: jdbc:mysql://127.0.0.1:3306/jyzx_competition?serverTimezone=UTC&useUnicode=true&useSSL=false&characterEncoding=utf8
+[INFO] [15:32:05.251] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.DbUtil.getConnection:139 --> getConnection, connection url: com.mysql.cj.jdbc.ConnectionImpl@3d18f43
+[INFO] [15:33:16.959] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.ConfigHelper.findConnectorLibPath:215 --> jar resource: jar:file:/D:/mybatis-start/mybatis-generator-gui.jar!/logback.xml
+[INFO] [15:33:16.960] [JavaFX Application Thread] [] com.zzg.mybatis.generator.bridge.MybatisGeneratorBridge.generate:66 --> connectorLibPath: D:\mybatis-start\lib\mysql-connector-java-8.0.11.jar
+[INFO] [15:33:16.962] [JavaFX Application Thread] [] com.zzg.mybatis.generator.util.DbUtil.getConnectionUrlWithSchema:214 --> getConnectionUrlWithSchema, connection url: jdbc:mysql://127.0.0.1:3306/jyzx_competition?serverTimezone=UTC&useUnicode=true&useSSL=false&characterEncoding=utf8
+[DEBUG] [15:33:17.059] [JavaFX Application Thread] [] org.mybatis.generator.logging.LogFactory.setImplementation:105 --> Logging initialized using 'org.mybatis.generator.logging.slf4j.Slf4jLoggingLogFactory@5cf2ab2' adapter.
+[DEBUG] [15:33:17.062] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:506 --> Retrieving column information for table "jyzx_competition.tb_newbee_mall_goods_info"
+[DEBUG] [15:33:17.091] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "goods_id", data type -5, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[DEBUG] [15:33:17.091] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "goods_name", data type 12, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[DEBUG] [15:33:17.093] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "goods_intro", data type 12, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[DEBUG] [15:33:17.093] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "goods_category_id", data type -5, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[DEBUG] [15:33:17.094] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "goods_cover_img", data type 12, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[DEBUG] [15:33:17.094] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "goods_carousel", data type 12, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[DEBUG] [15:33:17.095] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "goods_detail_content", data type -1, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[DEBUG] [15:33:17.095] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "original_price", data type 4, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[DEBUG] [15:33:17.095] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "selling_price", data type 4, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[DEBUG] [15:33:17.096] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "stock_num", data type 4, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[DEBUG] [15:33:17.096] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "tag", data type 12, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[DEBUG] [15:33:17.096] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "goods_sell_status", data type -6, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[DEBUG] [15:33:17.097] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "create_user", data type 4, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[DEBUG] [15:33:17.097] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "create_time", data type 93, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[DEBUG] [15:33:17.098] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "update_user", data type 4, in table "jyzx_competition..tb_newbee_mall_goods_info"
+[DEBUG] [15:33:17.098] [JavaFX Application Thread] [] org.mybatis.generator.internal.db.DatabaseIntrospector.getColumns:563 --> Found column "update_time", data type 93, in table "jyzx_competition..tb_newbee_mall_goods_info"

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.mapper.OrganizationMapper">
+
+    <resultMap id="BaseResultMap" type="com.ming.entity.Organization">
+        <id property="id" column="org_id" jdbcType="OTHER"/>
+        <result property="name" column="org_name" jdbcType="VARCHAR"/>
+        <result property="status" column="org_status" jdbcType="INTEGER"/>
+        <result property="updateTime" column="org_update_time" jdbcType="DATE"/>
+        <result property="createTime" column="org_create_time" jdbcType="DATE"/>
+        <result property="level" column="org_level" jdbcType="INTEGER"/>
+        <!--
+            property: Organization类中的集合的属性，children
+            ofType： 集合的泛型
+            columnPrefix: 列名的前缀，将所有c_开头的列的值封装到Company对象
+        -->
+        <collection property="children" ofType="com.ming.entity.Company">
+            <id property="id" column="c_id"/>
+            <result property="name" column="c_name" jdbcType="VARCHAR"/>
+            <result property="status" column="c_status" jdbcType="INTEGER"/>
+            <result property="updateTime" column="c_update_time" jdbcType="DATE"/>
+            <result property="createTime" column="c_create_time" jdbcType="DATE"/>
+            <result property="level" column="c_level" jdbcType="INTEGER"/>
+            <collection property="children" ofType="com.ming.entity.Department">
+                <id property="id" column="d_id"/>
+                <result property="name" column="d_name" jdbcType="VARCHAR"/>
+                <result property="status" column="d_status" jdbcType="INTEGER"/>
+                <result property="updateTime" column="d_update_time" jdbcType="DATE"/>
+                <result property="createTime" column="d_create_time" jdbcType="DATE"/>
+                <result property="level" column="d_level" jdbcType="INTEGER"/>
+            </collection>
+        </collection>
+    </resultMap>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+            /*组织表的列*/
+            o.id          AS org_id,
+            o.`name`      AS org_name,
+            o.`status`    AS org_status,
+            o.creat_time  AS org_creat_time,
+            o.update_time AS org_update_time,
+            o.`level`     AS org_level,
+            /*公司表的列*/
+            c.id          AS c_id,
+            c.`name`      AS c_name,
+            c.`status`    AS c_status,
+            c.creat_time  AS c_create_time,
+            c.update_time AS c_update_time,
+            c.`level`     AS c_level,
+            /*部门的列*/
+            d.id          AS d_id,
+            d.`name`      AS d_name,
+            r.`status`    AS d_status,
+            r.creat_time  AS d_create_time,
+            r.update_time AS d_update_time,
+            r.`level`     AS d_level
+        from organization o /*组织表*/
+                 LEFT JOIN company c /*公司表*/
+                           on o.id = c.affiliated_organization
+                 LEFT JOIN dept_relation r /*公司与部门关系表*/
+                           on c.id = r.company_id
+                 LEFT JOIN department d /*部门与部门关系表*/
+                           on d.id = r.department_id
+        order by o.level, c.level, r.level
+    </select>
+</mapper>

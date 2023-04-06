@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--加载自定义全局配置文件-->
+    <properties resource="jdbc.properties"></properties>
+
+    <settings>
+        <!--自定义 日志-->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+    <environments default="${env}">
+        <environment id="dev">
+            <transactionManager type="JDBC"/>
+            <!--配置数据源：驱动，地址，用户名，用户密码，连接池中最大连接数，连接池初始连接数。-->
+            <dataSource type="com.ming.utils.DataSourceHandler">
+                <property name="driverClassName" value="${driverClassName}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+                <property name="maxActive" value="${maxActive}"/>
+                <property name="initialSize" value="${initialSize}"/>
+            </dataSource>
+        </environment>
+        <!--生产环境-->
+        <environment id="product">
+            <transactionManager type="JDBC"/>
+            <dataSource type="com.ming.util.DataSourceHandler">
+                <property name="driverClassName" value="${driverClassName}"/>
+                <property name="url" value="jdbc:mysql://110.41.128.88:3306/test"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+                <property name="maxActive" value="${maxActive}"/>
+                <property name="initialSize" value="${initialSize}"/>
+            </dataSource>
+        </environment>
+    </environments>
+<!--    注册映射器-->
+    <mappers>
+        <package name="com.ming.mapper"></package>
+    </mappers>
+</configuration>

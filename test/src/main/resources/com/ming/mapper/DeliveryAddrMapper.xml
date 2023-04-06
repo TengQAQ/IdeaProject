@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.mapper.DeliveryAddrMapper">
+
+    <resultMap id="BaseResultMap" type="com.ming.entity.DeliveryAddr">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="userId" column="user_id" jdbcType="INTEGER"/>
+            <result property="contactsName" column="contacts_name" jdbcType="VARCHAR"/>
+            <result property="contactsTel" column="contacts_tel" jdbcType="VARCHAR"/>
+            <result property="zipCode" column="zip_code" jdbcType="VARCHAR"/>
+            <result property="addr" column="addr" jdbcType="VARCHAR"/>
+            <result property="bestTime" column="best_time" jdbcType="INTEGER"/>
+            <result property="isDefault" column="is_default" jdbcType="VARCHAR"/>
+            <result property="firstAddr" column="first_addr" jdbcType="INTEGER"/>
+            <result property="secondAddr" column="second_addr" jdbcType="INTEGER"/>
+            <result property="thridAddr" column="thrid_addr" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_id,contacts_name,
+        contacts_tel,zip_code,addr,
+        best_time,is_default,first_addr,
+        second_addr,thrid_addr
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from delivery_addr
+        where  id = #{id,jdbcType=INTEGER} 
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from delivery_addr
+    </select>
+
+    <delete id="deleteByPrimaryKey">
+        delete from delivery_addr
+        where  id = #{id,jdbcType=INTEGER} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ming.entity.DeliveryAddr" useGeneratedKeys="true">
+        insert into delivery_addr
+        ( id,user_id,contacts_name
+        ,contacts_tel,zip_code,addr
+        ,best_time,is_default,first_addr
+        ,second_addr,thrid_addr)
+        values (#{id,jdbcType=INTEGER},#{userId,jdbcType=INTEGER},#{contactsName,jdbcType=VARCHAR}
+        ,#{contactsTel,jdbcType=VARCHAR},#{zipCode,jdbcType=VARCHAR},#{addr,jdbcType=VARCHAR}
+        ,#{bestTime,jdbcType=INTEGER},#{isDefault,jdbcType=VARCHAR},#{firstAddr,jdbcType=INTEGER}
+        ,#{secondAddr,jdbcType=INTEGER},#{thridAddr,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ming.entity.DeliveryAddr" useGeneratedKeys="true">
+        insert into delivery_addr
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">id,</if>
+                <if test="userId != null">user_id,</if>
+                <if test="contactsName != null">contacts_name,</if>
+                <if test="contactsTel != null">contacts_tel,</if>
+                <if test="zipCode != null">zip_code,</if>
+                <if test="addr != null">addr,</if>
+                <if test="bestTime != null">best_time,</if>
+                <if test="isDefault != null">is_default,</if>
+                <if test="firstAddr != null">first_addr,</if>
+                <if test="secondAddr != null">second_addr,</if>
+                <if test="thridAddr != null">thrid_addr,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null">#{id,jdbcType=INTEGER},</if>
+                <if test="userId != null">#{userId,jdbcType=INTEGER},</if>
+                <if test="contactsName != null">#{contactsName,jdbcType=VARCHAR},</if>
+                <if test="contactsTel != null">#{contactsTel,jdbcType=VARCHAR},</if>
+                <if test="zipCode != null">#{zipCode,jdbcType=VARCHAR},</if>
+                <if test="addr != null">#{addr,jdbcType=VARCHAR},</if>
+                <if test="bestTime != null">#{bestTime,jdbcType=INTEGER},</if>
+                <if test="isDefault != null">#{isDefault,jdbcType=VARCHAR},</if>
+                <if test="firstAddr != null">#{firstAddr,jdbcType=INTEGER},</if>
+                <if test="secondAddr != null">#{secondAddr,jdbcType=INTEGER},</if>
+                <if test="thridAddr != null">#{thridAddr,jdbcType=INTEGER},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ming.entity.DeliveryAddr">
+        update delivery_addr
+        <set>
+                <if test="userId != null">
+                    user_id = #{userId,jdbcType=INTEGER},
+                </if>
+                <if test="contactsName != null">
+                    contacts_name = #{contactsName,jdbcType=VARCHAR},
+                </if>
+                <if test="contactsTel != null">
+                    contacts_tel = #{contactsTel,jdbcType=VARCHAR},
+                </if>
+                <if test="zipCode != null">
+                    zip_code = #{zipCode,jdbcType=VARCHAR},
+                </if>
+                <if test="addr != null">
+                    addr = #{addr,jdbcType=VARCHAR},
+                </if>
+                <if test="bestTime != null">
+                    best_time = #{bestTime,jdbcType=INTEGER},
+                </if>
+                <if test="isDefault != null">
+                    is_default = #{isDefault,jdbcType=VARCHAR},
+                </if>
+                <if test="firstAddr != null">
+                    first_addr = #{firstAddr,jdbcType=INTEGER},
+                </if>
+                <if test="secondAddr != null">
+                    second_addr = #{secondAddr,jdbcType=INTEGER},
+                </if>
+                <if test="thridAddr != null">
+                    thrid_addr = #{thridAddr,jdbcType=INTEGER},
+                </if>
+        </set>
+        where   id = #{id,jdbcType=INTEGER} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ming.entity.DeliveryAddr">
+        update delivery_addr
+        set 
+            user_id =  #{userId,jdbcType=INTEGER},
+            contacts_name =  #{contactsName,jdbcType=VARCHAR},
+            contacts_tel =  #{contactsTel,jdbcType=VARCHAR},
+            zip_code =  #{zipCode,jdbcType=VARCHAR},
+            addr =  #{addr,jdbcType=VARCHAR},
+            best_time =  #{bestTime,jdbcType=INTEGER},
+            is_default =  #{isDefault,jdbcType=VARCHAR},
+            first_addr =  #{firstAddr,jdbcType=INTEGER},
+            second_addr =  #{secondAddr,jdbcType=INTEGER},
+            thrid_addr =  #{thridAddr,jdbcType=INTEGER}
+        where   id = #{id,jdbcType=INTEGER} 
+    </update>
+</mapper>

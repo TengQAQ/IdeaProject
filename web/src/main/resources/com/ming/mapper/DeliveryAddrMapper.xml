@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.mapper.DeliveryAddrMapper">
+
+    <resultMap id="BaseResultMap" type="com.ming.entity.DeliveryAddr">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="contactsName" column="contacts_name" jdbcType="VARCHAR"/>
+            <result property="contactsTel" column="contacts_tel" jdbcType="VARCHAR"/>
+            <result property="zipCode" column="zip_code" jdbcType="VARCHAR"/>
+            <result property="addr" column="addr" jdbcType="VARCHAR"/>
+            <result property="addrFirst" column="addr_first" jdbcType="INTEGER"/>
+            <result property="addrSecond" column="addr_second" jdbcType="INTEGER"/>
+            <result property="addrThird" column="addr_third" jdbcType="INTEGER"/>
+            <result property="bestTime" column="best_time" jdbcType="INTEGER"/>
+            <result property="isDefault" column="is_default" jdbcType="VARCHAR"/>
+            <result property="value2" column="value_2" jdbcType="VARCHAR"/>
+            <result property="value3" column="value_3" jdbcType="VARCHAR"/>
+<!--            <association property="userInfo" column="user_id" javaType="com.ming.entity.UserInfo">-->
+<!--                <id column="user_id" property="id"/>-->
+<!--                <result column="reg_time" property="regTime"/>-->
+<!--                <result column="user_point" property="userPoint"/>-->
+<!--            </association>-->
+
+            <association property="userInfo" column="user_id" fetchType="lazy" select="com.ming.mapper.UserInfoMapper.selectByPrimaryKey"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_id,contacts_name,
+        contacts_tel,zip_code,addr,
+        addr_first,addr_second,addr_third,
+        best_time,is_default,value_2,
+        value_3
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from delivery_addr
+        where  id = #{id,jdbcType=INTEGER} 
+    </select>
+<!--    <select id="selectAll" resultMap="BaseResultMap">-->
+<!--        select-->
+<!--            p.id,-->
+<!--            p.user_id,-->
+<!--            p.contacts_name,-->
+<!--            p.contacts_tel,-->
+<!--            p.zip_code,-->
+<!--            p.addr,-->
+<!--            p.addr_first,-->
+<!--            p.addr_second,-->
+<!--            p.addr_third,-->
+<!--            p.best_time,-->
+<!--            p.is_default,-->
+<!--            t.reg_time,-->
+<!--            t.user_point-->
+<!--        from delivery_addr p-->
+<!--        join user_info t on p.user_id = t.id-->
+<!--    </select>-->
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+            id,
+            user_id,
+            contacts_name,
+            contacts_tel,
+            zip_code,
+            addr,
+            addr_first,
+            addr_second,
+            addr_third,
+            best_time,
+            is_default
+        from delivery_addr
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from delivery_addr
+        where  id = #{id,jdbcType=INTEGER} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ming.entity.DeliveryAddr" useGeneratedKeys="true">
+        insert into delivery_addr
+        ( id,user_id,contacts_name
+        ,contacts_tel,zip_code,addr
+        ,addr_first,addr_second,addr_third
+        ,best_time,is_default,value_2
+        ,value_3)
+        values (#{id,jdbcType=INTEGER},#{userInfo.id},#{contactsName,jdbcType=VARCHAR}
+        ,#{contactsTel,jdbcType=VARCHAR},#{zipCode,jdbcType=VARCHAR},#{addr,jdbcType=VARCHAR}
+        ,#{addrFirst,jdbcType=INTEGER},#{addrSecond,jdbcType=INTEGER},#{addrThird,jdbcType=INTEGER}
+        ,#{bestTime,jdbcType=INTEGER},#{isDefault,jdbcType=VARCHAR},#{value2,jdbcType=VARCHAR}
+        ,#{value3,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ming.entity.DeliveryAddr" useGeneratedKeys="true">
+        insert into delivery_addr
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">id,</if>
+                <if test="userInfo != null">user_id,</if>
+                <if test="contactsName != null">contacts_name,</if>
+                <if test="contactsTel != null">contacts_tel,</if>
+                <if test="zipCode != null">zip_code,</if>
+                <if test="addr != null">addr,</if>
+                <if test="addrFirst != null">addr_first,</if>
+                <if test="addrSecond != null">addr_second,</if>
+                <if test="addrThird != null">addr_third,</if>
+                <if test="bestTime != null">best_time,</if>
+                <if test="isDefault != null">is_default,</if>
+                <if test="value2 != null">value_2,</if>
+                <if test="value3 != null">value_3,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null">#{id,jdbcType=INTEGER},</if>
+                <if test="userInfo != null">#{userInfo.id},</if>
+                <if test="contactsName != null">#{contactsName,jdbcType=VARCHAR},</if>
+                <if test="contactsTel != null">#{contactsTel,jdbcType=VARCHAR},</if>
+                <if test="zipCode != null">#{zipCode,jdbcType=VARCHAR},</if>
+                <if test="addr != null">#{addr,jdbcType=VARCHAR},</if>
+                <if test="addrFirst != null">#{addrFirst,jdbcType=INTEGER},</if>
+                <if test="addrSecond != null">#{addrSecond,jdbcType=INTEGER},</if>
+                <if test="addrThird != null">#{addrThird,jdbcType=INTEGER},</if>
+                <if test="bestTime != null">#{bestTime,jdbcType=INTEGER},</if>
+                <if test="isDefault != null">#{isDefault,jdbcType=VARCHAR},</if>
+                <if test="value2 != null">#{value2,jdbcType=VARCHAR},</if>
+                <if test="value3 != null">#{value3,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ming.entity.DeliveryAddr">
+        update delivery_addr
+        <set>
+                <if test="userInfo != null">
+                    user_id = #{userInfo.id},
+                </if>
+                <if test="contactsName != null">
+                    contacts_name = #{contactsName,jdbcType=VARCHAR},
+                </if>
+                <if test="contactsTel != null">
+                    contacts_tel = #{contactsTel,jdbcType=VARCHAR},
+                </if>
+                <if test="zipCode != null">
+                    zip_code = #{zipCode,jdbcType=VARCHAR},
+                </if>
+                <if test="addr != null">
+                    addr = #{addr,jdbcType=VARCHAR},
+                </if>
+                <if test="addrFirst != null">
+                    addr_first = #{addrFirst,jdbcType=INTEGER},
+                </if>
+                <if test="addrSecond != null">
+                    addr_second = #{addrSecond,jdbcType=INTEGER},
+                </if>
+                <if test="addrThird != null">
+                    addr_third = #{addrThird,jdbcType=INTEGER},
+                </if>
+                <if test="bestTime != null">
+                    best_time = #{bestTime,jdbcType=INTEGER},
+                </if>
+                <if test="isDefault != null">
+                    is_default = #{isDefault,jdbcType=VARCHAR},
+                </if>
+                <if test="value2 != null">
+                    value_2 = #{value2,jdbcType=VARCHAR},
+                </if>
+                <if test="value3 != null">
+                    value_3 = #{value3,jdbcType=VARCHAR},
+                </if>
+        </set>
+        where   id = #{id,jdbcType=INTEGER} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ming.entity.DeliveryAddr">
+        update delivery_addr
+        set 
+            user_id =  #{userInfo.id},
+            contacts_name =  #{contactsName,jdbcType=VARCHAR},
+            contacts_tel =  #{contactsTel,jdbcType=VARCHAR},
+            zip_code =  #{zipCode,jdbcType=VARCHAR},
+            addr =  #{addr,jdbcType=VARCHAR},
+            addr_first =  #{addrFirst,jdbcType=INTEGER},
+            addr_second =  #{addrSecond,jdbcType=INTEGER},
+            addr_third =  #{addrThird,jdbcType=INTEGER},
+            best_time =  #{bestTime,jdbcType=INTEGER},
+            is_default =  #{isDefault,jdbcType=VARCHAR},
+            value_2 =  #{value2,jdbcType=VARCHAR},
+            value_3 =  #{value3,jdbcType=VARCHAR}
+        where   id = #{id,jdbcType=INTEGER} 
+    </update>
+    
+    <delete id="deletebatch" parameterType="list"   >
+        delete from delivery_addr
+        where id in
+        <foreach collection="list" open="(" item="item" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+</mapper>

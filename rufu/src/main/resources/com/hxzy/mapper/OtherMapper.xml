@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxzy.mapper.OtherMapper">
+
+    <resultMap id="BaseResultMap" type="com.hxzy.entity.Other">
+            <id property="otherId" column="other_id" jdbcType="INTEGER"/>
+            <result property="otherName" column="other_name" jdbcType="VARCHAR"/>
+            <result property="tableName" column="table_name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        other_id,other_name,table_name
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from other
+        where  other_id = #{otherId,jdbcType=INTEGER} 
+    </select>
+    <select id="selectByTable" parameterType="string" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from other
+        where table_name = #{tableName}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from other
+        where  other_id = #{otherId,jdbcType=INTEGER} 
+    </delete>
+    <insert id="insert" keyColumn="other_id" keyProperty="otherId" parameterType="com.hxzy.entity.Other" useGeneratedKeys="true">
+        insert into other
+        ( other_id,other_name,table_name
+        )
+        values (#{otherId,jdbcType=INTEGER},#{otherName,jdbcType=VARCHAR},#{tableName,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="other_id" keyProperty="otherId" parameterType="com.hxzy.entity.Other" useGeneratedKeys="true">
+        insert into other
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="otherId != null">other_id,</if>
+                <if test="otherName != null">other_name,</if>
+                <if test="tableName != null">table_name,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="otherId != null">#{otherId,jdbcType=INTEGER},</if>
+                <if test="otherName != null">#{otherName,jdbcType=VARCHAR},</if>
+                <if test="tableName != null">#{tableName,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hxzy.entity.Other">
+        update other
+        <set>
+                <if test="otherName != null">
+                    other_name = #{otherName,jdbcType=VARCHAR},
+                </if>
+                <if test="tableName != null">
+                    table_name = #{tableName,jdbcType=VARCHAR},
+                </if>
+        </set>
+        where   other_id = #{otherId,jdbcType=INTEGER} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hxzy.entity.Other">
+        update other
+        set 
+            other_name =  #{otherName,jdbcType=VARCHAR},
+            table_name =  #{tableName,jdbcType=VARCHAR}
+        where   other_id = #{otherId,jdbcType=INTEGER} 
+    </update>
+</mapper>

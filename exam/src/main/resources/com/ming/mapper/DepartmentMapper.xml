@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.mapper.DepartmentMapper">
+
+    <resultMap id="BaseResultMap" type="com.ming.entity.Department">
+            <id property="id" column="id" jdbcType="OTHER"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="INTEGER"/>
+            <result property="affiliatedCompany" column="affiliated_company" jdbcType="INTEGER"/>
+            <result property="creatTime" column="creat_time" jdbcType="DATE"/>
+            <result property="updateTime" column="update_time" jdbcType="DATE"/>
+            <result property="level" column="level" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name,status,
+        affiliated_company,creat_time,update_time,
+        level
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from department
+        where  id = #{id,jdbcType=OTHER} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from department
+        where  id = #{id,jdbcType=OTHER} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ming.entity.Department" useGeneratedKeys="true">
+        insert into department
+        ( id,name,status
+        ,affiliated_company,creat_time,update_time
+        ,level)
+        values (#{id,jdbcType=OTHER},#{name,jdbcType=VARCHAR},#{status,jdbcType=INTEGER}
+        ,#{affiliatedCompany,jdbcType=INTEGER},#{creatTime,jdbcType=DATE},#{updateTime,jdbcType=DATE}
+        ,#{level,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ming.entity.Department" useGeneratedKeys="true">
+        insert into department
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">id,</if>
+                <if test="name != null">name,</if>
+                <if test="status != null">status,</if>
+                <if test="affiliatedCompany != null">affiliated_company,</if>
+                <if test="creatTime != null">creat_time,</if>
+                <if test="updateTime != null">update_time,</if>
+                <if test="level != null">level,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null">#{id,jdbcType=OTHER},</if>
+                <if test="name != null">#{name,jdbcType=VARCHAR},</if>
+                <if test="status != null">#{status,jdbcType=INTEGER},</if>
+                <if test="affiliatedCompany != null">#{affiliatedCompany,jdbcType=INTEGER},</if>
+                <if test="creatTime != null">#{creatTime,jdbcType=DATE},</if>
+                <if test="updateTime != null">#{updateTime,jdbcType=DATE},</if>
+                <if test="level != null">#{level,jdbcType=INTEGER},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ming.entity.Department">
+        update department
+        <set>
+                <if test="name != null">
+                    name = #{name,jdbcType=VARCHAR},
+                </if>
+                <if test="status != null">
+                    status = #{status,jdbcType=INTEGER},
+                </if>
+                <if test="affiliatedCompany != null">
+                    affiliated_company = #{affiliatedCompany,jdbcType=INTEGER},
+                </if>
+                <if test="creatTime != null">
+                    creat_time = #{creatTime,jdbcType=DATE},
+                </if>
+                <if test="updateTime != null">
+                    update_time = #{updateTime,jdbcType=DATE},
+                </if>
+                <if test="level != null">
+                    level = #{level,jdbcType=INTEGER},
+                </if>
+        </set>
+        where   id = #{id,jdbcType=OTHER} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ming.entity.Department">
+        update department
+        set 
+            name =  #{name,jdbcType=VARCHAR},
+            status =  #{status,jdbcType=INTEGER},
+            affiliated_company =  #{affiliatedCompany,jdbcType=INTEGER},
+            creat_time =  #{creatTime,jdbcType=DATE},
+            update_time =  #{updateTime,jdbcType=DATE},
+            level =  #{level,jdbcType=INTEGER}
+        where   id = #{id,jdbcType=OTHER} 
+    </update>
+</mapper>

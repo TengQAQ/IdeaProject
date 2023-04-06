@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxzy.mapper.HxzyExamAdminUserTokenMapper">
+
+    <resultMap id="BaseResultMap" type="com.hxzy.entity.HxzyExamAdminUserToken">
+            <id property="adminUserId" column="admin_user_id" jdbcType="BIGINT"/>
+            <result property="token" column="token" jdbcType="VARCHAR"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="expireTime" column="expire_time" jdbcType="TIMESTAMP"/>
+            <result property="userName" column="token" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="BaseResultMap2" type="com.hxzy.entity.HxzyExamAdminUserToken">
+        <id property="adminUserId" column="admin_user_id" jdbcType="BIGINT"/>
+        <result property="token" column="token" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="expireTime" column="expire_time" jdbcType="TIMESTAMP"/>
+        <result property="userName" column="token" jdbcType="VARCHAR"/>
+        <association property="user" javaType="com.hxzy.entity.HxzyExamAdminUser" columnPrefix="r_">
+            <id property="adminUserId" column="admin_user_id" jdbcType="BIGINT"/>
+            <result property="loginUserName" column="login_user_name" jdbcType="VARCHAR"/>
+            <result property="loginPassword" column="login_password" jdbcType="VARCHAR"/>
+            <result property="nickName" column="nick_name" jdbcType="VARCHAR"/>
+            <result property="locked" column="locked" jdbcType="TINYINT"/>
+        </association>
+    </resultMap>
+    <sql id="Base_Column_List">
+        admin_user_id,token,update_time,
+        expire_time
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from hxzy_exam_admin_user_token
+        where  admin_user_id = #{adminUserId,jdbcType=BIGINT} 
+    </select>
+    <select id="selectByToken"  parameterType="string" resultMap="BaseResultMap2">
+        SELECT
+            t1.*,
+            t2.admin_user_id r_admin_user_id,
+            t2.login_user_name r_login_user_name,
+            t2.login_password r_login_password,
+            t2.nick_name r_nick_name,
+            t2.locked r_locked
+        FROM
+            `hxzy_exam_admin_user_token` t1
+                INNER JOIN hxzy_exam_admin_user t2 ON t2.login_user_name = t1.user_name
+        WHERE
+            t1.token = #{param1}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from hxzy_exam_admin_user_token
+        where  admin_user_id = #{adminUserId,jdbcType=BIGINT} 
+    </delete>
+    <delete id="deleteByToken">
+        delete from hxzy_exam_admin_user_token h where h.token = #{param1}
+    </delete>
+    <insert id="insert" keyColumn="admin_user_id" keyProperty="adminUserId" parameterType="com.hxzy.entity.HxzyExamAdminUserToken" useGeneratedKeys="true">
+        insert into hxzy_exam_admin_user_token
+        ( admin_user_id,token,update_time
+        ,expire_time)
+        values (#{adminUserId,jdbcType=BIGINT},#{token,jdbcType=VARCHAR},#{updateTime,jdbcType=TIMESTAMP}
+        ,#{expireTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="admin_user_id" keyProperty="adminUserId" parameterType="com.hxzy.entity.HxzyExamAdminUserToken" useGeneratedKeys="true">
+        insert into hxzy_exam_admin_user_token
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="adminUserId != null">admin_user_id,</if>
+                <if test="token != null">token,</if>
+                <if test="updateTime != null">update_time,</if>
+                <if test="expireTime != null">expire_time,</if>
+                 <if test="userName != null">user_name,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="adminUserId != null">#{adminUserId,jdbcType=BIGINT},</if>
+                <if test="token != null">#{token,jdbcType=VARCHAR},</if>
+                <if test="updateTime != null">#{updateTime,jdbcType=TIMESTAMP},</if>
+                <if test="expireTime != null">#{expireTime,jdbcType=TIMESTAMP},</if>
+                <if test="userName != null">#{userName,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hxzy.entity.HxzyExamAdminUserToken">
+        update hxzy_exam_admin_user_token
+        <set>
+                <if test="token != null">
+                    token = #{token,jdbcType=VARCHAR},
+                </if>
+                <if test="updateTime != null">
+                    update_time = #{updateTime,jdbcType=TIMESTAMP},
+                </if>
+                <if test="expireTime != null">
+                    expire_time = #{expireTime,jdbcType=TIMESTAMP},
+                </if>
+        </set>
+        where   admin_user_id = #{adminUserId,jdbcType=BIGINT} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hxzy.entity.HxzyExamAdminUserToken">
+        update hxzy_exam_admin_user_token
+        set 
+            token =  #{token,jdbcType=VARCHAR},
+            update_time =  #{updateTime,jdbcType=TIMESTAMP},
+            expire_time =  #{expireTime,jdbcType=TIMESTAMP}
+        where   admin_user_id = #{adminUserId,jdbcType=BIGINT} 
+    </update>
+</mapper>

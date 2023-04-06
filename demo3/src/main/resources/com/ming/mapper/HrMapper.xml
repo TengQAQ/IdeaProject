@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.mapper.HrMapper">
+
+    <resultMap id="BaseResultMap" type="com.ming.entity.Hr">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="phone" column="phone" jdbcType="CHAR"/>
+            <result property="telephone" column="telephone" jdbcType="VARCHAR"/>
+            <result property="address" column="address" jdbcType="VARCHAR"/>
+            <result property="enabled" column="enabled" jdbcType="TINYINT"/>
+            <result property="username" column="username" jdbcType="VARCHAR"/>
+            <result property="password" column="password" jdbcType="VARCHAR"/>
+            <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
+            <result property="remark" column="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name,phone,
+        telephone,address,enabled,
+        username,password,avatar,
+        remark
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="string" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from hr
+        where username = #{param1}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from hr
+        where  username = #{username}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ming.entity.Hr" useGeneratedKeys="true">
+        insert into hr
+        ( id,name,phone
+        ,telephone,address,enabled
+        ,username,password,avatar
+        ,remark)
+        values (#{id,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{phone,jdbcType=CHAR}
+        ,#{telephone,jdbcType=VARCHAR},#{address,jdbcType=VARCHAR},#{enabled,jdbcType=TINYINT}
+        ,#{username,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{avatar,jdbcType=VARCHAR}
+        ,#{remark,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ming.entity.Hr" useGeneratedKeys="true">
+        insert into hr
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">id,</if>
+                <if test="name != null">name,</if>
+                <if test="phone != null">phone,</if>
+                <if test="telephone != null">telephone,</if>
+                <if test="address != null">address,</if>
+                <if test="enabled != null">enabled,</if>
+                <if test="username != null">username,</if>
+                <if test="password != null">password,</if>
+                <if test="avatar != null">avatar,</if>
+                <if test="remark != null">remark,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null">#{id,jdbcType=INTEGER},</if>
+                <if test="name != null">#{name,jdbcType=VARCHAR},</if>
+                <if test="phone != null">#{phone,jdbcType=CHAR},</if>
+                <if test="telephone != null">#{telephone,jdbcType=VARCHAR},</if>
+                <if test="address != null">#{address,jdbcType=VARCHAR},</if>
+                <if test="enabled != null">#{enabled,jdbcType=TINYINT},</if>
+                <if test="username != null">#{username,jdbcType=VARCHAR},</if>
+                <if test="password != null">#{password,jdbcType=VARCHAR},</if>
+                <if test="avatar != null">#{avatar,jdbcType=VARCHAR},</if>
+                <if test="remark != null">#{remark,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ming.entity.Hr">
+        update hr
+        <set>
+                <if test="name != null">
+                    name = #{name,jdbcType=VARCHAR},
+                </if>
+                <if test="phone != null">
+                    phone = #{phone,jdbcType=CHAR},
+                </if>
+                <if test="telephone != null">
+                    telephone = #{telephone,jdbcType=VARCHAR},
+                </if>
+                <if test="address != null">
+                    address = #{address,jdbcType=VARCHAR},
+                </if>
+                <if test="enabled != null">
+                    enabled = #{enabled,jdbcType=TINYINT},
+                </if>
+                <if test="username != null">
+                    username = #{username,jdbcType=VARCHAR},
+                </if>
+                <if test="password != null">
+                    password = #{password,jdbcType=VARCHAR},
+                </if>
+                <if test="avatar != null">
+                    avatar = #{avatar,jdbcType=VARCHAR},
+                </if>
+                <if test="remark != null">
+                    remark = #{remark,jdbcType=VARCHAR},
+                </if>
+        </set>
+        where   id = #{id,jdbcType=INTEGER} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ming.entity.Hr">
+        update hr
+        set 
+            name =  #{name,jdbcType=VARCHAR},
+            phone =  #{phone,jdbcType=CHAR},
+            telephone =  #{telephone,jdbcType=VARCHAR},
+            address =  #{address,jdbcType=VARCHAR},
+            enabled =  #{enabled,jdbcType=TINYINT},
+            username =  #{username,jdbcType=VARCHAR},
+            password =  #{password,jdbcType=VARCHAR},
+            avatar =  #{avatar,jdbcType=VARCHAR},
+            remark =  #{remark,jdbcType=VARCHAR}
+        where   id = #{id,jdbcType=INTEGER} 
+    </update>
+</mapper>
