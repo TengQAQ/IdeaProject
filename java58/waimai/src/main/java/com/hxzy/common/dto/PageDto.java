@@ -1,20 +1,22 @@
 package com.hxzy.common.dto;
 
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 /**
- * @author QinTeng
- * @version 1.0
- * @date 2023/4/5-17:56
- * @description TODO
+ * 通用接收分页参数
  */
-
 @Getter
 @Setter
-@ToString
-public class PageDto {
-    private int PageNum = 5;
-    private int PageSize = 0;
+@ApiModel(value = "分页模型")
+public class PageDTO {
+
+    @ApiModelProperty(value = "当前几第页",required = true,example = "1")
+    private Integer  page;
+
+    @ApiModelProperty(value = "每页显示几笔",required = true,example = "10")
+    private Integer size;
 }

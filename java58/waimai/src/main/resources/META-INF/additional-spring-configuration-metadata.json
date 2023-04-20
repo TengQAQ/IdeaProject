@@ -1,0 +1,42 @@
+{
+  "groups": [
+    {
+      "name": "captcha",
+      "type": "com.hxzy.common.domain.CaptchaProperties",
+      "sourceType": "com.hxzy.common.domain.CaptchaProperties"
+    } ,
+    {
+      "name": "token",
+      "type": "com.hxzy.common.domain.TokenProperties",
+      "sourceType": "com.hxzy.common.domain.TokenProperties"
+    },
+    {
+      "name": "sms",
+      "type": "com.hxzy.common.domain.SMSProperties",
+      "sourceType": "com.hxzy.common.domain.SMSProperties"
+    }
+  ],
+  "properties": [
+
+  ],
+  "hints": [
+    {
+      "name": "captcha.type",
+      "values": [
+        {
+          "value": "png",
+          "description": "字母+数字"
+        },
+        {
+          "value": "gif",
+          "description": "动态的字母+数字"
+        },
+        {
+          "value": "airth",
+          "description": "算术运算"
+        }
+      ]
+    }
+
+  ]
+}

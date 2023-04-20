@@ -1,38 +1,31 @@
 package com.hxzy.common.exception;
 
-import com.hxzy.common.eunms.AckCode;
+import com.hxzy.common.enums.AckCode;
+
+import javax.management.RuntimeErrorException;
 
 /**
- * @author QinTeng
- * @version 1.0
- * @date 2023/4/5-22:48
- * @description TODO
+ * 所有自定义异常
+ *
+ * @author tonneyyy
  */
-public class WaiMaiException {
+public class WaimaiException extends RuntimeException {
 
-    /**
-     * 所有自定义异常
-     *
-     * @author tonneyyy
-     */
-    public class WaimaiException extends RuntimeException {
+    private AckCode  ackCode;
 
-        private AckCode ackCode;
-
-        public AckCode getAckCode() {
-            return ackCode;
-        }
+    public AckCode getAckCode() {
+        return ackCode;
+    }
 
 
-        public WaimaiException(AckCode ackCode) {
-            super(ackCode.getMsg());
-            this.ackCode = ackCode;
-        }
+    public WaimaiException(AckCode ackCode) {
+        super(ackCode.getMsg());
+        this.ackCode = ackCode;   
+    }
 
 
-        public WaimaiException(Throwable cause, AckCode ackCode) {
-            super(cause);
-            this.ackCode = ackCode;
-        }
+    public WaimaiException(Throwable cause, AckCode ackCode) {
+        super(cause);
+        this.ackCode = ackCode;
     }
 }

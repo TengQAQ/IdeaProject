@@ -1,19 +1,25 @@
-# 配置
+# tomcat配置
 server:
   port: 8080
 spring:
   datasource:
     driver-class-name: oracle.jdbc.driver.OracleDriver
     url: jdbc:oracle:thin:@192.168.23.180:1521:helowin
-    username: ming
-    password: 123456
+    username: wy
+    password: wy
+    hikari:
+      minimum-idle: 2
+      maximum-pool-size: 4
   redis:
     host: 192.168.23.180
     port: 6379
     password: hxzy
-    database: 10
+    database: 7
   jackson:
     time-zone: GMT+8
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
@@ -23,5 +29,15 @@ mybatis:
 # 自定义验证码
 captcha:
   width: 160
-  len: 3
-  type: png
+  len: 2
+  type: airth
+# 令牌自定义属性
+token:
+  expired_minutes: 120
+  sign: ssaa@@#saadd3545$&22134!!
+sms:
+  secretId: AKIDgOuFLDtLYV0JOEoBLHzUqxohQyTkncDa
+  secretKey: A6pMgngRmskNo10nNnDUYaVEj082rVvB
+  signName: 易发公众号
+  sdkAppId: 1400412221
+  expired: 3

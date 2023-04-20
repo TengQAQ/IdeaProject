@@ -4,10 +4,10 @@ import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 /**
- * @author QinTeng
- * @version 1.0
- * @date 2023/4/6-0:54
- * @description TODO
+ * @Author wy
+ * @Description TODO
+ * @Date 2023/4/4 14:33
+ * @Version 1.0
  */
 @AutoConfiguration
 @EnableConfigurationProperties({CaptchaProperties.class})

@@ -1,2 +1,3 @@
-# spi扩展
 com.hxzy.common.domain.CaptchaAutoConfiguration
+com.hxzy.common.domain.TokenAutoConfiguration
+com.hxzy.common.domain.SMSAutoConfiguration

@@ -6,15 +6,16 @@ import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * @author QinTeng
- * @version 1.0
- * @date 2023/4/6-0:45
- * @description TODO
+ * @Author wy
+ * @Description 验证码的属性
+ * @Date 2023/4/4 14:25
+ * @Version 1.0
  */
 @Getter
 @Setter
 @ConfigurationProperties(prefix = "captcha")
 public class CaptchaProperties {
+
     /**
      * 宽度
      */

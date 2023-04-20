@@ -1,10 +1,13 @@
 package com.hxzy.common.util;
 
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.jwt.JWT;
 import cn.hutool.jwt.JWTUtil;
 import com.hxzy.common.constants.RedisConstant;
-import com.hxzy.common.vo.back.LoginVO;
-import com.hxzy.entity.Emp;
+import com.hxzy.common.domain.TokenProperties;
+import com.hxzy.config.WaimaiThreadLocal;
+import com.hxzy.entity.Employee;
+import com.hxzy.vo.back.AdminLoginVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
@@ -16,10 +19,10 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author QinTeng
- * @version 1.0
- * @date 2023/4/6-10:43
- * @description TODO
+ * @Author wy
+ * @Description 令牌管理工具类
+ * @Date 2023/4/4 17:14
+ * @Version 1.0
  */
 @Component
 public class TokenUtil {
@@ -39,16 +42,13 @@ public class TokenUtil {
      *         // 把 employee--> AdminLoginVO
      *         // 把 AdminLoginVO--> uuid -->存到redis中(string数据类型)
      *         // uuid-->换成jwt加密码  https://hutool.cn/docs/#/jwt/JWT%E5%B7%A5%E5%85%B7-JWTUtil
-     * @param employee
-     * @return
      */
-    public String createJwtToken(Emp employee) {
+    public String createJwtToken(AdminLoginVO  adminLoginVO) {
         //组装成自定义的对象
-        LoginVO adminLoginVO=new LoginVO();
-        adminLoginVO.setId(employee.getId());
-        adminLoginVO.setName(employee.getLoginName());
-        adminLoginVO.setAvatar(employee.getAvatar());
-        adminLoginVO.setAccountType(1);
+//        adminLoginVO.setId(employee.getId());
+//        adminLoginVO.setName(employee.getLoginName());
+//        adminLoginVO.setAvatar(employee.getAvatar());
+//        adminLoginVO.setAccountType(1);
 
         //令牌
         adminLoginVO.setToken(UUID.randomUUID().toString());
@@ -57,7 +57,7 @@ public class TokenUtil {
 
         //存储到redis中
         String redisKey= RedisConstant.getRedisKey(this.tokenProperties.getAdminRedisPrefix()+ adminLoginVO.getToken());
-        this.redisTemplate.opsForValue().set(redisKey, adminLoginVO, this.tokenProperties.getExpiredMinutes(), TimeUnit.MINUTES);
+        this.redisTemplate.opsForValue().set(redisKey, adminLoginVO, this.tokenProperties.getExpiredMinutes(),TimeUnit.MINUTES);
 
         // uuid--> jwt加密   https://hutool.cn/docs/#/jwt/JWT%E5%B7%A5%E5%85%B7-JWTUtil
         Map<String, Object> map = new HashMap<String, Object>() {
@@ -75,7 +75,7 @@ public class TokenUtil {
      * 向redis中写入数据(刷新操作)
      * @param adminLoginVO
      */
-    public void refrshToken(LoginVO adminLoginVO){
+    public void refrshToken(AdminLoginVO adminLoginVO){
 
         //判断，令牌是否快要过期了    未来时间毫秒 -  当前时间毫秒 <= 还有20分钟 毫秒
         long future=adminLoginVO.getExpiredTime().getTime();
@@ -89,4 +89,46 @@ public class TokenUtil {
         }
     }
 
+    /**
+     * 验证后台令牌的有效性
+     * @param jwtToken
+     * @return
+     */
+    public AdminLoginVO  verifyAdminToken(String jwtToken){
+          String jwt=parseToken(jwtToken);
+          //解析jwt
+          if( JWTUtil.verify(jwt, this.tokenProperties.getSign().getBytes())){
+              final JWT jwtObject= JWTUtil.parseToken(jwt);
+              String uuid=jwtObject.getPayload("uuid").toString();
+               //构造一个redisKey
+              String redisKey= RedisConstant.getRedisKey(this.tokenProperties.getAdminRedisPrefix()+uuid);
+              Object redisValue=this.redisTemplate.opsForValue().get(redisKey);
+              if(redisValue!=null){
+                  return (AdminLoginVO) redisValue;
+              }
+          }
+          return null;
+    }
+
+    /**
+     * 解析令牌 ,判断它是否拥有 Bearer 开头值
+     * @param jwtToken
+     * @return
+     */
+    public String parseToken(String jwtToken){
+        if(jwtToken.startsWith(this.tokenProperties.getAdminBear())){
+            jwtToken=jwtToken.replace(this.tokenProperties.getAdminBear(),"").trim();
+        }
+        return jwtToken;
+    }
+
+    /**
+     * 后台用户退出
+     * 移出redis的信息
+     */
+    public void backLogout() {
+        AdminLoginVO adminLoginVO = WaimaiThreadLocal.adminThreadLocal.get();
+        String redisKey= RedisConstant.getRedisKey(this.tokenProperties.getAdminRedisPrefix()+ adminLoginVO.getToken());
+        this.redisTemplate.delete(redisKey);
+    }
 }

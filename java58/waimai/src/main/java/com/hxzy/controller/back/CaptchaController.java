@@ -3,11 +3,13 @@ package com.hxzy.controller.back;
 import com.hxzy.common.constants.RedisConstant;
 import com.hxzy.common.constants.WaiMaiConstant;
 import com.hxzy.common.domain.CaptchaProperties;
-import com.hxzy.common.vo.Result;
+import com.hxzy.common.vo.R;
 import com.wf.captcha.ArithmeticCaptcha;
 import com.wf.captcha.GifCaptcha;
 import com.wf.captcha.SpecCaptcha;
 import com.wf.captcha.base.Captcha;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,11 +22,10 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author QinTeng
- * @version 1.0
- * @date 2023/4/6-0:34
- * @description TODO
+ * 验证码
+ * @author admin
  */
+@Api(tags = "验证码API")
 @RestController
 @RequestMapping(value = "/api")
 public class CaptchaController {
@@ -42,10 +43,11 @@ public class CaptchaController {
     @Autowired
     private CaptchaProperties captchaProperties;
 
+    @ApiOperation(value = "获取验证码")
     @GetMapping(value = "/captcha")
-    public Result captcha(){
+    public R  captcha(){
         //多态    工厂方法  https://blog.csdn.net/qq_25827845/article/details/52503884
-        Captcha captcha=null;
+        Captcha  captcha=null;
 
         if(WaiMaiConstant.PNG.equals(this.captchaProperties.getType())){
             captcha=new SpecCaptcha(this.captchaProperties.getWidth(), this.captchaProperties.getHeight());
@@ -72,7 +74,7 @@ public class CaptchaController {
         map.put("uuid",uuid);
         map.put("image", captcha.toBase64());
 
-        return Result.okHasData(map);
+        return R.okHasData(map);
     }
 
 
