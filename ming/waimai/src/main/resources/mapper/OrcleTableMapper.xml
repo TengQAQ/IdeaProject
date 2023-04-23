@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxzy.mapper.OracleTableMapper">
+
+
+    <select id="searchAllTables" resultType="java.util.Map">
+        select rownum,t.table_name as tableName, c.comments
+        from tabs t  left join user_tab_comments  c  on t.table_name=c.table_name
+        where c.table_type='TABLE' and t.table_name not like 'TPL_%' order by t.table_name
+    </select>
+
+    <!-- 通过表名得到该表的列信息 -->
+    <select id="columnsForTableName" parameterType="java.lang.String" resultType="com.hxzy.vo.back.TableNameColumnsVO">
+
+        SELECT  t1.Column_Name as columnName ,
+               t1.DATA_TYPE  as dataType  ,
+                nvl2(t1.DATA_PRECISION, t1.DATA_PRECISION,t1.DATA_LENGTH) as dataLength ,
+               t2.Comments  as comments
+        FROM cols t1
+                 LEFT JOIN user_col_comments t2
+                           ON t1.Table_name = t2.Table_name
+                               AND t1.Column_Name = t2.Column_Name
+                 LEFT JOIN user_tab_comments t3
+                           ON t1.Table_name = t3.Table_name
+                 LEFT JOIN user_objects t4
+                           ON t1.table_name = t4.OBJECT_NAME
+        WHERE NOT EXISTS (SELECT t4.Object_Name
+                          FROM User_objects t4
+                          WHERE t4.Object_Type = 'TABLE'
+                            AND t4.Temporary = 'Y'
+                            AND t4.Object_Name = t1.Table_Name)
+          and t1.TABLE_NAME=#{tableName}
+         ORDER BY t1.Table_Name, t1.Column_ID
+    </select>
+
+
+</mapper>

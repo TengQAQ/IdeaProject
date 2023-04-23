@@ -30,10 +30,14 @@ public class SqlSessionHelper {
 		} catch (Exception e) {
 			if(session != null)
 				// 发生异常回滚事务
+			{
 				session.rollback();
+			}
 			e.printStackTrace();
 		} finally {
-			if (session != null) session.close();
+			if (session != null) {
+				session.close();
+			}
 		}
 		return 0;
 	}

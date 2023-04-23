@@ -3,6 +3,9 @@ package com.hxzy.vo.back;
 import cn.hutool.core.util.CharUtil;
 import cn.hutool.core.util.StrUtil;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -13,6 +16,7 @@ import java.util.*;
  * @date 2023/4/18-13:07
  * @description TODO
  */
+@Data
 public class TableNameColumnsVO {
     private Long num;
     private String columnName;
@@ -103,28 +107,28 @@ public class TableNameColumnsVO {
      */
     private Boolean tableField;
 
-    @JsonInclude(value = JsonInclude.Include.NON_NULL)
-    private List<Map<String,Object>> convertList;
-
-    public List<Map<String, Object>> getConvertList() {
-        if(StrUtil.isBlank(this.convertValue)){
-            return null;
-        }
-
-        //0=女:1=男
-        if(this.vueType==3){
-            String[] splitArr=this.convertValue.split(":");
-            List<Map<String, Object>>  mapList=new ArrayList<>();
-            for(String value : splitArr){
-                String[] valueArr=value.split("=");
-
-                Map<String,Object> mp=new HashMap<>();
-                mp.put("key", valueArr[0]);
-                mp.put("value",valueArr[1]);
-                mapList.add(mp);
-            }
-            return mapList;
-        }
-        return null;
-    }
+//    @JsonInclude(value = JsonInclude.Include.NON_NULL)
+//    private List<Map<String,Object>> convertList;
+//
+//    public List<Map<String, Object>> getConvertList() {
+//        if(StrUtil.isBlank(this.convertValue)){
+//            return null;
+//        }
+//
+//        //0=女:1=男
+//        if(this.vueType==3){
+//            String[] splitArr=this.convertValue.split(":");
+//            List<Map<String, Object>>  mapList=new ArrayList<>();
+//            for(String value : splitArr){
+//                String[] valueArr=value.split("=");
+//
+//                Map<String,Object> mp=new HashMap<>();
+//                mp.put("key", valueArr[0]);
+//                mp.put("value",valueArr[1]);
+//                mapList.add(mp);
+//            }
+//            return mapList;
+//        }
+//        return null;
+//    }
 }

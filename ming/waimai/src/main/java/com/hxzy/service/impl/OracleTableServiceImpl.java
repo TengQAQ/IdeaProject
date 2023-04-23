@@ -81,12 +81,10 @@ public class OracleTableServiceImpl  implements OracleTableService {
 
         return data;
     }
-
-
     @Override
     public byte[] generatorCode(String tableName, String tableDesc) {
-
-        String oracleTableName=tableName;    //MERCHANDISE_CLASS
+        //MERCHANDISE_CLASS
+        String oracleTableName=tableName;
         String entityName= entityName(oracleTableName);
         String desc=tableDesc;
 
@@ -96,9 +94,9 @@ public class OracleTableServiceImpl  implements OracleTableService {
         }
         byte[] data=null;
 
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        try(CheckedOutputStream checkedOutputStream = new CheckedOutputStream(outputStream, new CRC32());
-            ZipOutputStream zip = new ZipOutputStream(outputStream)){
+        try(ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            CheckedOutputStream checkedOutputStream = new CheckedOutputStream(outputStream, new CRC32());
+            ZipOutputStream zip = new ZipOutputStream(checkedOutputStream)){
             // 生成 EntityName+SearchDTO.java
             generatorCodeSerchDTO(entityName,desc, zip);
 
@@ -117,16 +115,12 @@ public class OracleTableServiceImpl  implements OracleTableService {
             // 生成 controller/EntityName+Controller.java
             generatorCodeController(entityName,desc, tplAutocolumn.getJavaDataType(), zip);
 
-        } catch (TemplateException | IOException e) {
-            e.printStackTrace();
-        } catch (freemarker.template.TemplateException e) {
-            throw new RuntimeException(e);
-        }
+            //zip文件数据，转换成二进制流
+            data= outputStream.toByteArray();
 
-        //zip文件数据，转换成二进制流 , 如果不关闭，就会提示， 不可预料的压缩文件末端  的错误
-        IOUtils.closeQuietly(outputStream);
-        //再取值
-        data= outputStream.toByteArray();
+        } catch (IOException | TemplateException | freemarker.template.TemplateException e) {
+            e.printStackTrace();
+        }
         return data;
     }
 

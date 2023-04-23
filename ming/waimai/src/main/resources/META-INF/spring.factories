@@ -1,0 +1,2 @@
+# Initializers
+com.hxzy.common.domain.TokenAutoConfiguration = com.hxzy.common.domain.TokenProperties

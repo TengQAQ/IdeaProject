@@ -1,0 +1,24 @@
+{
+  "properties": [
+  ],
+  "hints": [
+    {
+      "name": "captcha.type",
+      "values": [
+        {
+          "value": "png",
+          "description": "字母+数字"
+        },
+        {
+          "value": "gif",
+          "description": "动态的字母+数字"
+        },
+        {
+          "value": "airth",
+          "description": "算术运算"
+        }
+      ]
+    }
+
+  ]
+}

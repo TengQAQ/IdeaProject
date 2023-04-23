@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxzy.mapper.TplAutocolumnMapper">
+
+    <resultMap id="BaseResultMap" type="com.hxzy.entity.TplAutocolumn">
+            <id property="id" column="ID" jdbcType="DECIMAL"/>
+            <result property="num" column="NUM" jdbcType="DECIMAL"/>
+            <result property="columnName" column="COLUMN_NAME" jdbcType="VARCHAR"/>
+            <result property="dataType" column="DATA_TYPE" jdbcType="VARCHAR"/>
+            <result property="dataLength" column="DATA_LENGTH" jdbcType="DECIMAL"/>
+            <result property="comments" column="COMMENTS" jdbcType="VARCHAR"/>
+            <result property="javaField" column="JAVA_FIELD" jdbcType="VARCHAR"/>
+            <result property="javaDataType" column="JAVA_DATA_TYPE" jdbcType="VARCHAR"/>
+            <result property="vueType" column="VUE_TYPE" jdbcType="DECIMAL"/>
+            <result property="convertValue" column="CONVERT_VALUE" jdbcType="VARCHAR"/>
+            <result property="searchField" column="SEARCH_FIELD" jdbcType="DECIMAL"/>
+            <result property="tableField" column="TABLE_FIELD" jdbcType="DECIMAL"/>
+            <result property="tableName" column="TABLE_NAME" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        ID,NUM,COLUMN_NAME,
+        DATA_TYPE,DATA_LENGTH,COMMENTS,
+        JAVA_FIELD,JAVA_DATA_TYPE,VUE_TYPE,
+        CONVERT_VALUE,SEARCH_FIELD,TABLE_FIELD,
+        TABLE_NAME
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from TPL_AUTOCOLUMN
+        where  ID = #{id,jdbcType=DECIMAL} 
+    </select>
+    <select id="findByTableName"  resultMap="BaseResultMap" parameterType="java.lang.String">
+        select * from TPL_AUTOCOLUMN
+        where "TABLE_NAME"=#{tableName}
+        order by NUM
+    </select>
+    <select id="searchTablePrimaryKeyAndJavaType" resultMap="BaseResultMap">
+        SELECT
+            a.COLUMN_NAME,
+            c.JAVA_DATA_TYPE ,
+            c.TABLE_NAME,
+            c.JAVA_FIELD
+        FROM
+            user_cons_columns a,
+            user_constraints b,
+            TPL_AUTOCOLUMN c
+        WHERE
+            a.constraint_name = b.constraint_name
+          AND a.COLUMN_NAME = c.COLUMN_NAME
+          AND b.constraint_type = 'P'
+          and a.TABLE_NAME=c.TABLE_NAME
+          AND c.table_name = #{tableName}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from TPL_AUTOCOLUMN
+        where  ID = #{id,jdbcType=DECIMAL} 
+    </delete>
+    <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.hxzy.entity.TplAutocolumn" useGeneratedKeys="true">
+        insert into TPL_AUTOCOLUMN
+        ( ID,NUM,COLUMN_NAME
+        ,DATA_TYPE,DATA_LENGTH,COMMENTS
+        ,JAVA_FIELD,JAVA_DATA_TYPE,VUE_TYPE
+        ,CONVERT_VALUE,SEARCH_FIELD,TABLE_FIELD
+        ,TABLE_NAME)
+        values (MING_INCREMENT.nextval,#{num,jdbcType=DECIMAL},#{columnName,jdbcType=VARCHAR}
+        ,#{dataType,jdbcType=VARCHAR},#{dataLength,jdbcType=DECIMAL},#{comments,jdbcType=VARCHAR}
+        ,#{javaField,jdbcType=VARCHAR},#{javaDataType,jdbcType=VARCHAR},#{vueType,jdbcType=DECIMAL}
+        ,#{convertValue,jdbcType=VARCHAR},#{searchField,jdbcType=DECIMAL},#{tableField,jdbcType=DECIMAL}
+        ,#{tableName,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.hxzy.entity.TplAutocolumn" useGeneratedKeys="true">
+        insert into TPL_AUTOCOLUMN
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">ID,</if>
+                <if test="num != null">NUM,</if>
+                <if test="columnName != null">COLUMN_NAME,</if>
+                <if test="dataType != null">DATA_TYPE,</if>
+                <if test="dataLength != null">DATA_LENGTH,</if>
+                <if test="comments != null">COMMENTS,</if>
+                <if test="javaField != null">JAVA_FIELD,</if>
+                <if test="javaDataType != null">JAVA_DATA_TYPE,</if>
+                <if test="vueType != null">VUE_TYPE,</if>
+                <if test="convertValue != null">CONVERT_VALUE,</if>
+                <if test="searchField != null">SEARCH_FIELD,</if>
+                <if test="tableField != null">TABLE_FIELD,</if>
+                <if test="tableName != null">TABLE_NAME,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null">MING_INCREMENT.nextval,</if>
+                <if test="num != null">#{num,jdbcType=DECIMAL},</if>
+                <if test="columnName != null">#{columnName,jdbcType=VARCHAR},</if>
+                <if test="dataType != null">#{dataType,jdbcType=VARCHAR},</if>
+                <if test="dataLength != null">#{dataLength,jdbcType=DECIMAL},</if>
+                <if test="comments != null">#{comments,jdbcType=VARCHAR},</if>
+                <if test="javaField != null">#{javaField,jdbcType=VARCHAR},</if>
+                <if test="javaDataType != null">#{javaDataType,jdbcType=VARCHAR},</if>
+                <if test="vueType != null">#{vueType,jdbcType=DECIMAL},</if>
+                <if test="convertValue != null">#{convertValue,jdbcType=VARCHAR},</if>
+                <if test="searchField != null">#{searchField,jdbcType=DECIMAL},</if>
+                <if test="tableField != null">#{tableField,jdbcType=DECIMAL},</if>
+                <if test="tableName != null">#{tableName,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hxzy.entity.TplAutocolumn">
+        update TPL_AUTOCOLUMN
+        <set>
+                <if test="num != null">
+                    NUM = #{num,jdbcType=DECIMAL},
+                </if>
+                <if test="columnName != null">
+                    COLUMN_NAME = #{columnName,jdbcType=VARCHAR},
+                </if>
+                <if test="dataType != null">
+                    DATA_TYPE = #{dataType,jdbcType=VARCHAR},
+                </if>
+                <if test="dataLength != null">
+                    DATA_LENGTH = #{dataLength,jdbcType=DECIMAL},
+                </if>
+                <if test="comments != null">
+                    COMMENTS = #{comments,jdbcType=VARCHAR},
+                </if>
+                <if test="javaField != null">
+                    JAVA_FIELD = #{javaField,jdbcType=VARCHAR},
+                </if>
+                <if test="javaDataType != null">
+                    JAVA_DATA_TYPE = #{javaDataType,jdbcType=VARCHAR},
+                </if>
+                <if test="vueType != null">
+                    VUE_TYPE = #{vueType,jdbcType=DECIMAL},
+                </if>
+                <if test="convertValue != null">
+                    CONVERT_VALUE = #{convertValue,jdbcType=VARCHAR},
+                </if>
+                <if test="searchField != null">
+                    SEARCH_FIELD = #{searchField,jdbcType=DECIMAL},
+                </if>
+                <if test="tableField != null">
+                    TABLE_FIELD = #{tableField,jdbcType=DECIMAL},
+                </if>
+                <if test="tableName != null">
+                    TABLE_NAME = #{tableName,jdbcType=VARCHAR},
+                </if>
+        </set>
+        where   ID = #{id,jdbcType=DECIMAL} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hxzy.entity.TplAutocolumn">
+        update TPL_AUTOCOLUMN
+        set 
+            NUM =  #{num,jdbcType=DECIMAL},
+            COLUMN_NAME =  #{columnName,jdbcType=VARCHAR},
+            DATA_TYPE =  #{dataType,jdbcType=VARCHAR},
+            DATA_LENGTH =  #{dataLength,jdbcType=DECIMAL},
+            COMMENTS =  #{comments,jdbcType=VARCHAR},
+            JAVA_FIELD =  #{javaField,jdbcType=VARCHAR},
+            JAVA_DATA_TYPE =  #{javaDataType,jdbcType=VARCHAR},
+            VUE_TYPE =  #{vueType,jdbcType=DECIMAL},
+            CONVERT_VALUE =  #{convertValue,jdbcType=VARCHAR},
+            SEARCH_FIELD =  #{searchField,jdbcType=DECIMAL},
+            TABLE_FIELD =  #{tableField,jdbcType=DECIMAL},
+            TABLE_NAME =  #{tableName,jdbcType=VARCHAR}
+        where   ID = #{id,jdbcType=DECIMAL} 
+    </update>
+</mapper>

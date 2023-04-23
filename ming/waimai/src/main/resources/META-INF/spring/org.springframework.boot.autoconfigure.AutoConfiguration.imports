@@ -1,0 +1,3 @@
+# spi扩展
+com.hxzy.common.domain.CaptchaAutoConfiguration
+com.hxzy.common.domain.TokenAutoConfiguration

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxzy.mapper.ContMapper">
+
+    <resultMap id="BaseResultMap" type="com.hxzy.entity.Cont">
+            <id property="id" column="ID" jdbcType="DECIMAL"/>
+            <result property="loginName" column="LOGIN_NAME" jdbcType="VARCHAR"/>
+            <result property="password" column="PASSWORD" jdbcType="VARCHAR"/>
+            <result property="userName" column="USER_NAME" jdbcType="VARCHAR"/>
+            <result property="gender" column="GENDER" jdbcType="DECIMAL"/>
+            <result property="portrait" column="PORTRAIT" jdbcType="VARCHAR"/>
+            <result property="status" column="STATUS" jdbcType="DECIMAL"/>
+            <result property="createTime" column="CREATE_TIME" jdbcType="TIMESTAMP"/>
+            <result property="createBy" column="CREATE_BY" jdbcType="VARCHAR"/>
+            <result property="updateTime" column="UPDATE_TIME" jdbcType="TIMESTAMP"/>
+            <result property="updateBy" column="UPDATE_BY" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        ID,LOGIN_NAME,PASSWORD,
+        USER_NAME,GENDER,PORTRAIT,
+        STATUS,CREATE_TIME,CREATE_BY,
+        UPDATE_TIME,UPDATE_BY
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from CONTAMER
+        where  ID = #{id,jdbcType=DECIMAL} 
+    </select>
+    <select id="search" resultType="com.hxzy.entity.Cont">
+        select  ID, LOGINID, USER_NAME, GENDER, PORTRAIT, "STATUS", CREATE_TIME
+        from CONTAMER
+        <where>
+            <if test="dto.loginid!=null and dto.loginid!=''">
+                and LOGINID like  concat( concat('%',#{dto.loginid}),'%')
+            </if>
+
+            <if test="dto.userName!=null and dto.userName!=''">
+                and USER_NAME like  concat( concat('%',#{userName}),'%')
+            </if>
+
+            <if test="dto.beginTime!=null and dto.endTime!=null">
+                and CREATE_TIME between #{dto.beginTime}   and   next_day(#{dto.endTime},1)
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from CONTAMER
+        where  ID = #{id,jdbcType=DECIMAL} 
+    </delete>
+    <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.hxzy.entity.Cont" useGeneratedKeys="true">
+        insert into CONTAMER
+        ( ID,LOGIN_NAME,PASSWORD
+        ,USER_NAME,GENDER,PORTRAIT
+        ,STATUS,CREATE_TIME,CREATE_BY
+        ,UPDATE_TIME,UPDATE_BY)
+        values (#{id,jdbcType=DECIMAL},#{loginName,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR}
+        ,#{userName,jdbcType=VARCHAR},#{gender,jdbcType=DECIMAL},#{portrait,jdbcType=VARCHAR}
+        ,#{status,jdbcType=DECIMAL},#{createTime,jdbcType=TIMESTAMP},#{createBy,jdbcType=VARCHAR}
+        ,#{updateTime,jdbcType=TIMESTAMP},#{updateBy,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.hxzy.entity.Cont" useGeneratedKeys="true">
+        insert into CONTAMER
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">ID,</if>
+                <if test="loginName != null">LOGIN_NAME,</if>
+                <if test="password != null">PASSWORD,</if>
+                <if test="userName != null">USER_NAME,</if>
+                <if test="gender != null">GENDER,</if>
+                <if test="portrait != null">PORTRAIT,</if>
+                <if test="status != null">STATUS,</if>
+                <if test="createTime != null">CREATE_TIME,</if>
+                <if test="createBy != null">CREATE_BY,</if>
+                <if test="updateTime != null">UPDATE_TIME,</if>
+                <if test="updateBy != null">UPDATE_BY,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null">#{id,jdbcType=DECIMAL},</if>
+                <if test="loginName != null">#{loginName,jdbcType=VARCHAR},</if>
+                <if test="password != null">#{password,jdbcType=VARCHAR},</if>
+                <if test="userName != null">#{userName,jdbcType=VARCHAR},</if>
+                <if test="gender != null">#{gender,jdbcType=DECIMAL},</if>
+                <if test="portrait != null">#{portrait,jdbcType=VARCHAR},</if>
+                <if test="status != null">#{status,jdbcType=DECIMAL},</if>
+                <if test="createTime != null">#{createTime,jdbcType=TIMESTAMP},</if>
+                <if test="createBy != null">#{createBy,jdbcType=VARCHAR},</if>
+                <if test="updateTime != null">#{updateTime,jdbcType=TIMESTAMP},</if>
+                <if test="updateBy != null">#{updateBy,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hxzy.entity.Cont">
+        update CONTAMER
+        <set>
+                <if test="loginName != null">
+                    LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+                </if>
+                <if test="password != null">
+                    PASSWORD = #{password,jdbcType=VARCHAR},
+                </if>
+                <if test="userName != null">
+                    USER_NAME = #{userName,jdbcType=VARCHAR},
+                </if>
+                <if test="gender != null">
+                    GENDER = #{gender,jdbcType=DECIMAL},
+                </if>
+                <if test="portrait != null">
+                    PORTRAIT = #{portrait,jdbcType=VARCHAR},
+                </if>
+                <if test="status != null">
+                    STATUS = #{status,jdbcType=DECIMAL},
+                </if>
+                <if test="createTime != null">
+                    CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+                </if>
+                <if test="createBy != null">
+                    CREATE_BY = #{createBy,jdbcType=VARCHAR},
+                </if>
+                <if test="updateTime != null">
+                    UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+                </if>
+                <if test="updateBy != null">
+                    UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+                </if>
+        </set>
+        where   ID = #{id,jdbcType=DECIMAL} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hxzy.entity.Cont">
+        update CONTAMER
+        set 
+            LOGIN_NAME =  #{loginName,jdbcType=VARCHAR},
+            PASSWORD =  #{password,jdbcType=VARCHAR},
+            USER_NAME =  #{userName,jdbcType=VARCHAR},
+            GENDER =  #{gender,jdbcType=DECIMAL},
+            PORTRAIT =  #{portrait,jdbcType=VARCHAR},
+            STATUS =  #{status,jdbcType=DECIMAL},
+            CREATE_TIME =  #{createTime,jdbcType=TIMESTAMP},
+            CREATE_BY =  #{createBy,jdbcType=VARCHAR},
+            UPDATE_TIME =  #{updateTime,jdbcType=TIMESTAMP},
+            UPDATE_BY =  #{updateBy,jdbcType=VARCHAR}
+        where   ID = #{id,jdbcType=DECIMAL} 
+    </update>
+</mapper>

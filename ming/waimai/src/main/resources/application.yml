@@ -1,0 +1,39 @@
+# 配置
+server:
+  port: 8080
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@192.168.23.180:1521:helowin
+    username: ming
+    password: 123456
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+    database: 7
+  jackson:
+    time-zone: GMT+8
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+  type-aliases-package: com.hxzy.entity
+  mapper-locations: classpath:/mapper/*.xml
+# 自定义验证码
+captcha:
+  width: 160
+  len: 2
+  type: airth
+token:
+  expired_minutes: 120
+  sign: ssaa@@#saadd3545$&22134!!
+swagger:
+  enable: true
+  application-name: ${spring.application.name}
+  application-version: 1.0
+  application-description: springfox swagger 3.0整合Demo
+  try-host: http://localhost:${server.port}
