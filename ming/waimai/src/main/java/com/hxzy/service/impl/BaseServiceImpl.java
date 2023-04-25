@@ -29,16 +29,16 @@ public class BaseServiceImpl<Model, PK extends Serializable> implements BaseServ
 
 	@Override
 	public Model selectByPrimaryKey(PK id) {
-		return null;
+		return (Model) mapper.selectByPrimaryKey(id);
 	}
 
 	@Override
 	public int updateByPrimaryKeySelective(Model record) {
-		return 0;
+		return mapper.updateByPrimaryKeySelective(record);
 	}
 
 	@Override
 	public int updateByPrimaryKey(Model record) {
-		return 0;
+		return mapper.updateByPrimaryKey(record);
 	}
 }
