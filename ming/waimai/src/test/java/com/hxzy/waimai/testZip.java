@@ -16,7 +16,7 @@ import java.util.zip.ZipOutputStream;
  * @date 2023/4/13-10:14
  * @description TODO
  */
-@SpringBootTest
+//@SpringBootTest
 class testZip {
     @Test
     void tets(){

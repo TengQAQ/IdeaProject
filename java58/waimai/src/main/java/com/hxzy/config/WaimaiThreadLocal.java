@@ -1,6 +1,7 @@
 package com.hxzy.config;
 
 import com.hxzy.vo.back.AdminLoginVO;
+import com.hxzy.vo.front.MobileLoginVO;
 
 /**
  * @Author wy
@@ -14,4 +15,10 @@ public class WaimaiThreadLocal {
      * 存放后台用户验证令牌后的数据 本地线程
      */
     public static ThreadLocal<AdminLoginVO>  adminThreadLocal=new ThreadLocal<>();
+
+
+    /**
+     * 存放mobile用户验证令牌后的数据 本地线程
+     */
+    public static ThreadLocal<MobileLoginVO>  mobileThreadLocal=new ThreadLocal<>();
 }

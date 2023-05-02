@@ -136,6 +136,17 @@
             <artifactId>cos_api</artifactId>
             <version>5.6.97</version>
         </dependency>
+        <!-- easyexcel -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
+            <version>3.2.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
     </dependencies>
 
      <!-- 构造项目，把项目打包成jar包，运行 -->

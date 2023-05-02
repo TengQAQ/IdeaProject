@@ -67,7 +67,7 @@ public class CaptchaController {
         String value = captcha.text();
         //令牌
         String uuid= UUID.randomUUID().toString();
-        //存放到redis中 "back:captcha:"+uuid
+        //设置redis前缀 "back:captcha:"+uuid
         String redisKey= RedisConstant.getRedisKey(RedisConstant.CAPTCHA_KEY,uuid);
 
         //存入到redis，5分钟过期

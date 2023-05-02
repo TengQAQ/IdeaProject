@@ -98,7 +98,7 @@ public class OracleTableServiceImpl  implements OracleTableService {
             CheckedOutputStream checkedOutputStream = new CheckedOutputStream(outputStream, new CRC32());
             ZipOutputStream zip = new ZipOutputStream(checkedOutputStream)){
             // 生成 EntityName+SearchDTO.java
-            generatorCodeSerchDTO(entityName,desc, zip);
+            generatorCodeSerchDTO(oracleTableName,desc, zip);
 
             //生成 EntityName+Mapper.java
             generatorCodeMapper(entityName,desc, tplAutocolumn.getJavaDataType(), zip);

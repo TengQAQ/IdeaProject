@@ -1,6 +1,8 @@
 package com.hxzy.controller.back;
 
 import cn.hutool.crypto.digest.BCrypt;
+import com.alibaba.excel.EasyExcel;
+import com.hxzy.common.annontation.Admin;
 import com.hxzy.common.eunms.AckCode;
 import com.hxzy.config.WaimaiThreadLocal;
 import com.hxzy.dto.EmployeeAddDTO;
@@ -19,7 +21,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -52,6 +56,7 @@ public class EmployeeController  extends BaseController {
         return super.pageToPageVO(arr);
     }
 
+    @Admin
     @ApiOperation(value = "新增")
     @PostMapping
     public Result  insert(@RequestBody @Valid EmployeeAddDTO addDTO) {
@@ -78,6 +83,7 @@ public class EmployeeController  extends BaseController {
         return super.toR(count);
     }
 
+    @Admin
     @ApiOperation(value = "修改")
     @PutMapping
     public Result update(@RequestBody @Valid EmployeeEditDTO editDTO) {
@@ -107,5 +113,24 @@ public class EmployeeController  extends BaseController {
             return Result.build(AckCode.NOT_FOUND_DATA);
         }
         return Result.okHasData(employee);
+    }
+
+    @ApiOperation(value = "导出查询数据到excel")
+    @PostMapping(value = "/download")
+    public void downloadExcel(@RequestBody EmployeeSearchDTO  employeeSearchDTO, HttpServletResponse response) throws IOException {
+        //普通查询
+        List<Emp> arr=this.employeeService.search(employeeSearchDTO);
+
+        //对接easyexcel
+        // 这里URLEncoder.encode可以防止中文乱码 当然和easyexcel没有关系
+        // String fileName = URLEncoder.encode("测试", "UTF-8").replaceAll("\\+", "%20");
+        String fileName = "Employee_data_" + System.currentTimeMillis() + ".xlsx";
+
+
+        // 这里注意 有同学反应使用swagger 会导致各种问题，请直接用浏览器或者用postman
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setCharacterEncoding("utf-8");
+        response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
+        EasyExcel.write(response.getOutputStream(), Emp.class).sheet("result").doWrite(arr);
     }
 }

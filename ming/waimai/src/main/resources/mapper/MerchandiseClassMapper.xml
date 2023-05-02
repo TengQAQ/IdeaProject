@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxzy.mapper.MerchandiseClassMapper">
+
+    <resultMap id="BaseResultMap" type="com.hxzy.entity.MerchandiseClass">
+            <id property="id" column="ID" jdbcType="DECIMAL"/>
+            <result property="mId" column="M_ID" jdbcType="DECIMAL"/>
+            <result property="name" column="NAME" jdbcType="VARCHAR"/>
+            <result property="picture" column="PICTURE" jdbcType="VARCHAR"/>
+            <result property="createTime" column="CREATE_TIME" jdbcType="TIMESTAMP"/>
+            <result property="createBy" column="CREATE_BY" jdbcType="VARCHAR"/>
+            <result property="updateTime" column="UPDATE_TIME" jdbcType="TIMESTAMP"/>
+            <result property="updateBy" column="UPDATE_BY" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        ID,M_ID,NAME,
+        PICTURE,CREATE_TIME,CREATE_BY,
+        UPDATE_TIME,UPDATE_BY
+    </sql>
+    <select id="search" resultMap="BaseResultMap">
+        select
+            ID,M_ID,'NAME',PICTURE,CREATE_TIME
+        from MERCHANDISE_CLASS
+        <where>
+            <if test="dto.mId!=null">
+                and M_ID  =  #{dto.mId }
+            </if>
+            <if test="dto.name!=null and dto.name!=''">
+                and NAME like  concat( concat('%',#{dto.name }),'%')
+            </if>
+        </where>
+    </select>
+</mapper>

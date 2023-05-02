@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxzy.mapper.AddressBookMapper">
+  <resultMap id="BaseResultMap" type="com.hxzy.entity.AddressBook">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="USER_ID" jdbcType="DECIMAL" property="userId" />
+    <result column="CONSIGNEE" jdbcType="VARCHAR" property="consignee" />
+    <result column="SEX" jdbcType="DECIMAL" property="sex" />
+    <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+    <result column="PROVINCE_CODE" jdbcType="VARCHAR" property="provinceCode" />
+    <result column="PROVINCE_NAME" jdbcType="VARCHAR" property="provinceName" />
+    <result column="CITY_CODE" jdbcType="VARCHAR" property="cityCode" />
+    <result column="CITY_NAME" jdbcType="VARCHAR" property="cityName" />
+    <result column="DISTRICT_CODE" jdbcType="VARCHAR" property="districtCode" />
+    <result column="DISTRICT_NAME" jdbcType="VARCHAR" property="districtName" />
+    <result column="DETAIL" jdbcType="VARCHAR" property="detail" />
+    <result column="LABEL" jdbcType="VARCHAR" property="label" />
+    <result column="IS_DEFAULT" jdbcType="DECIMAL" property="isDefault" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="CREATE_BY" jdbcType="DECIMAL" property="createBy" />
+    <result column="UPDATE_BY" jdbcType="DECIMAL" property="updateBy" />
+    <result column="IS_DELETED" jdbcType="DECIMAL" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, USER_ID, CONSIGNEE, SEX, PHONE, PROVINCE_CODE, PROVINCE_NAME, CITY_CODE, CITY_NAME, 
+    DISTRICT_CODE, DISTRICT_NAME, DETAIL, "LABEL", IS_DEFAULT,  IS_DELETED
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ADDRESS_BOOK
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+
+
+    <select id="findAllByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+      select  ID, USER_ID, CONSIGNEE, SEX, PHONE,  DETAIL, "LABEL", IS_DEFAULT,IS_DELETED
+      from ADDRESS_BOOK
+      where USER_ID=#{id} and IS_DELETED=0
+      order by IS_DEFAULT desc, ID
+    </select>
+
+  <!--获取默认收货地址 -->
+  <select id="findDefaultAddress" parameterType="java.lang.Long"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ADDRESS_BOOK
+    where USER_ID = #{userId}  and IS_DEFAULT=1 and IS_DELETED=0
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from ADDRESS_BOOK
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.hxzy.entity.AddressBook">
+    insert into ADDRESS_BOOK (ID, USER_ID, CONSIGNEE, 
+      SEX, PHONE, PROVINCE_CODE, 
+      PROVINCE_NAME, CITY_CODE, CITY_NAME, 
+      DISTRICT_CODE, DISTRICT_NAME, DETAIL, 
+      "LABEL", IS_DEFAULT, CREATE_TIME, 
+      UPDATE_TIME, CREATE_BY, UPDATE_BY, 
+      IS_DELETED)
+    values (ADDRESS_BOOK_SEQ.nextval, #{userId,jdbcType=DECIMAL}, #{consignee,jdbcType=VARCHAR},
+      #{sex,jdbcType=DECIMAL}, #{phone,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, 
+      #{provinceName,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, #{cityName,jdbcType=VARCHAR}, 
+      #{districtCode,jdbcType=VARCHAR}, #{districtName,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR}, 
+      #{label,jdbcType=VARCHAR}, #{isDefault,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=DECIMAL}, #{updateBy,jdbcType=DECIMAL}, 
+      #{isDeleted,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxzy.entity.AddressBook">
+    insert into ADDRESS_BOOK
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="consignee != null">
+        CONSIGNEE,
+      </if>
+      <if test="sex != null">
+        SEX,
+      </if>
+      <if test="phone != null">
+        PHONE,
+      </if>
+      <if test="provinceCode != null">
+        PROVINCE_CODE,
+      </if>
+      <if test="provinceName != null">
+        PROVINCE_NAME,
+      </if>
+      <if test="cityCode != null">
+        CITY_CODE,
+      </if>
+      <if test="cityName != null">
+        CITY_NAME,
+      </if>
+      <if test="districtCode != null">
+        DISTRICT_CODE,
+      </if>
+      <if test="districtName != null">
+        DISTRICT_NAME,
+      </if>
+      <if test="detail != null">
+        DETAIL,
+      </if>
+      <if test="label != null">
+        "LABEL",
+      </if>
+      <if test="isDefault != null">
+        IS_DEFAULT,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="createBy != null">
+        CREATE_BY,
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY,
+      </if>
+      <if test="isDeleted != null">
+        IS_DELETED,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="consignee != null">
+        #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=DECIMAL},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null">
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null">
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="districtCode != null">
+        #{districtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="districtName != null">
+        #{districtName,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null">
+        #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null">
+        #{isDefault,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=DECIMAL},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=DECIMAL},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxzy.entity.AddressBook">
+    update ADDRESS_BOOK
+    <set>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="consignee != null">
+        CONSIGNEE = #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        SEX = #{sex,jdbcType=DECIMAL},
+      </if>
+      <if test="phone != null">
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null">
+        PROVINCE_CODE = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null">
+        PROVINCE_NAME = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        CITY_NAME = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="districtCode != null">
+        DISTRICT_CODE = #{districtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="districtName != null">
+        DISTRICT_NAME = #{districtName,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        DETAIL = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null">
+        "LABEL" = #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null">
+        IS_DEFAULT = #{isDefault,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        CREATE_BY = #{createBy,jdbcType=DECIMAL},
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY = #{updateBy,jdbcType=DECIMAL},
+      </if>
+      <if test="isDeleted != null">
+        IS_DELETED = #{isDeleted,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxzy.entity.AddressBook">
+    update ADDRESS_BOOK
+    set USER_ID = #{userId,jdbcType=DECIMAL},
+      CONSIGNEE = #{consignee,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=DECIMAL},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      PROVINCE_CODE = #{provinceCode,jdbcType=VARCHAR},
+      PROVINCE_NAME = #{provinceName,jdbcType=VARCHAR},
+      CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+      CITY_NAME = #{cityName,jdbcType=VARCHAR},
+      DISTRICT_CODE = #{districtCode,jdbcType=VARCHAR},
+      DISTRICT_NAME = #{districtName,jdbcType=VARCHAR},
+      DETAIL = #{detail,jdbcType=VARCHAR},
+      "LABEL" = #{label,jdbcType=VARCHAR},
+      IS_DEFAULT = #{isDefault,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      CREATE_BY = #{createBy,jdbcType=DECIMAL},
+      UPDATE_BY = #{updateBy,jdbcType=DECIMAL},
+      IS_DELETED = #{isDeleted,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxzy.mapper.OrderDetailMapper">
+  <resultMap id="BaseResultMap" type="com.hxzy.entity.OrderDetail">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="IMAGE" jdbcType="VARCHAR" property="image" />
+    <result column="ORDER_ID" jdbcType="DECIMAL" property="orderId" />
+    <result column="DISH_ID" jdbcType="DECIMAL" property="dishId" />
+    <result column="M_ID" jdbcType="DECIMAL" property="mid" />
+    <result column="DISH_FLAVOR" jdbcType="VARCHAR" property="dishFlavor" />
+    <result column="QUANTITY" jdbcType="DECIMAL" property="quantity" />
+    <result column="AMOUNT" jdbcType="DECIMAL" property="amount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, "NAME", IMAGE, ORDER_ID, DISH_ID, M_ID, DISH_FLAVOR, QUANTITY, AMOUNT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ORDER_DETAIL
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from ORDER_DETAIL
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.hxzy.entity.OrderDetail">
+    insert into ORDER_DETAIL (ID, "NAME", IMAGE, 
+      ORDER_ID, DISH_ID, M_ID, 
+      DISH_FLAVOR, QUANTITY, AMOUNT
+      )
+    values (ORDER_DETAIL_SEQ.nextval, #{name,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR},
+      #{orderId,jdbcType=DECIMAL}, #{dishId,jdbcType=DECIMAL}, #{mid,jdbcType=DECIMAL}, 
+      #{dishFlavor,jdbcType=VARCHAR}, #{quantity,jdbcType=DECIMAL}, #{amount,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxzy.entity.OrderDetail">
+    insert into ORDER_DETAIL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        "NAME",
+      </if>
+      <if test="image != null">
+        IMAGE,
+      </if>
+      <if test="orderId != null">
+        ORDER_ID,
+      </if>
+      <if test="dishId != null">
+        DISH_ID,
+      </if>
+      <if test="mid != null">
+        M_ID,
+      </if>
+      <if test="dishFlavor != null">
+        DISH_FLAVOR,
+      </if>
+      <if test="quantity != null">
+        QUANTITY,
+      </if>
+      <if test="amount != null">
+        AMOUNT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=DECIMAL},
+      </if>
+      <if test="dishId != null">
+        #{dishId,jdbcType=DECIMAL},
+      </if>
+      <if test="mid != null">
+        #{mid,jdbcType=DECIMAL},
+      </if>
+      <if test="dishFlavor != null">
+        #{dishFlavor,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxzy.entity.OrderDetail">
+    update ORDER_DETAIL
+    <set>
+      <if test="name != null">
+        "NAME" = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        IMAGE = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        ORDER_ID = #{orderId,jdbcType=DECIMAL},
+      </if>
+      <if test="dishId != null">
+        DISH_ID = #{dishId,jdbcType=DECIMAL},
+      </if>
+      <if test="mid != null">
+        M_ID = #{mid,jdbcType=DECIMAL},
+      </if>
+      <if test="dishFlavor != null">
+        DISH_FLAVOR = #{dishFlavor,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null">
+        QUANTITY = #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null">
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxzy.entity.OrderDetail">
+    update ORDER_DETAIL
+    set "NAME" = #{name,jdbcType=VARCHAR},
+      IMAGE = #{image,jdbcType=VARCHAR},
+      ORDER_ID = #{orderId,jdbcType=DECIMAL},
+      DISH_ID = #{dishId,jdbcType=DECIMAL},
+      M_ID = #{mid,jdbcType=DECIMAL},
+      DISH_FLAVOR = #{dishFlavor,jdbcType=VARCHAR},
+      QUANTITY = #{quantity,jdbcType=DECIMAL},
+      AMOUNT = #{amount,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

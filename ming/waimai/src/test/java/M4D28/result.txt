@@ -1,0 +1,3 @@
+[学号,姓名,性别,年龄,联系电话, 11,张三,男,25,18789009989, 12,杨画,女,23,15678776678, 13,小明,男,30,13345433451, 14,小月,男,19,I8789775567]
+[ReadDataFromTxt.user(id=11, name=张三, sex=男, age=25, phone=18789009989), ReadDataFromTxt.user(id=13, name=小明, sex=男, age=30, phone=13345433451), ReadDataFromTxt.user(id=14, name=小月, sex=男, age=19, phone=I8789775567)]
+[ReadDataFromTxt.user(id=14, name=小月, sex=男, age=19, phone=I8789775567), ReadDataFromTxt.user(id=12, name=杨画, sex=女, age=23, phone=15678776678), ReadDataFromTxt.user(id=11, name=张三, sex=男, age=25, phone=18789009989), ReadDataFromTxt.user(id=13, name=小明, sex=男, age=30, phone=13345433451)]

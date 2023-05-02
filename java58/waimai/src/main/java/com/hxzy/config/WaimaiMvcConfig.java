@@ -1,6 +1,7 @@
 package com.hxzy.config;
 
 import com.hxzy.config.interceptor.BackTokenValidatorInterceptor;
+import com.hxzy.config.interceptor.MobileTokenValidatorInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,6 +27,11 @@ public class WaimaiMvcConfig implements WebMvcConfigurer {
     @Autowired
     private BackTokenValidatorInterceptor backTokenValidatorInterceptor;
 
+    /**
+     * mobile拦截，拦截所有的/mobile/**
+     */
+    @Autowired
+    private MobileTokenValidatorInterceptor mobileTokenValidatorInterceptor;
 
     /**
      * 添加自定义拦截器
@@ -38,6 +44,9 @@ public class WaimaiMvcConfig implements WebMvcConfigurer {
                 .addPathPatterns("/api/**")
                 .excludePathPatterns("/api/login","/api/captcha");
 
+        registry.addInterceptor(this.mobileTokenValidatorInterceptor)
+                .addPathPatterns("/mobile/**")
+                .excludePathPatterns("/mobile/login");
 
     }
 

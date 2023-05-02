@@ -65,7 +65,7 @@ public class LoginController {
     @PostMapping(value = "/login")
     @ApiOperation("用户登录")
     public Result login(@RequestBody @Valid LoginDto loginDTO){
-        log.info("输出",loginDTO);
+//        log.info("输出",loginDTO);
 
         //1、redis中验证，验证码是否过期
         String redisKey= RedisConstant.getRedisKey(RedisConstant.CAPTCHA_KEY,loginDTO.getUuid());

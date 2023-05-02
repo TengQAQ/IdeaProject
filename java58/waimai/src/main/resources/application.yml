@@ -14,12 +14,15 @@ spring:
     host: 192.168.23.180
     port: 6379
     password: hxzy
-    database: 7
+    database: 10
   jackson:
     time-zone: GMT+8
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+  servlet:
+    multipart:
+      max-file-size: 2MB
 mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

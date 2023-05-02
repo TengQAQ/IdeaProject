@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Api(tags = "验证码API")
 @RestController
-@RequestMapping(value = "/api")
+@RequestMapping(value = {"/api","/front"})
 public class CaptchaController {
 
 

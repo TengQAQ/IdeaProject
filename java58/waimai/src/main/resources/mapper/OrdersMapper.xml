@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxzy.mapper.OrdersMapper">
+  <resultMap id="BaseResultMap" type="com.hxzy.entity.Orders">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="ORDER_NUMBER" jdbcType="VARCHAR" property="orderNumber" />
+    <result column="STATUS" jdbcType="DECIMAL" property="status" />
+    <result column="USER_ID" jdbcType="DECIMAL" property="userId" />
+    <result column="M_ID" jdbcType="DECIMAL" property="mid" />
+    <result column="ADDRESS_BOOK_ID" jdbcType="DECIMAL" property="addressBookId" />
+    <result column="ORDER_TIME" jdbcType="TIMESTAMP" property="orderTime" />
+    <result column="CHECKOUT_TIME" jdbcType="TIMESTAMP" property="checkoutTime" />
+    <result column="PAY_METHOD" jdbcType="DECIMAL" property="payMethod" />
+    <result column="AMOUNT" jdbcType="DECIMAL" property="amount" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="CONSIGNEE" jdbcType="VARCHAR" property="consignee" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ORDER_NUMBER, "STATUS", USER_ID, M_ID, ADDRESS_BOOK_ID, ORDER_TIME, CHECKOUT_TIME, 
+    PAY_METHOD, AMOUNT, REMARK, PHONE, ADDRESS, USER_NAME, CONSIGNEE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ORDERS
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+
+   <!-- 查看当年的交易额-->
+  <select id="fullYearTotalMoney" parameterType="java.lang.Long" resultType="java.lang.Long">
+    select NVL(sum(amount),0)
+    from ORDERS
+    where status=4 and extract(year from checkout_time )= extract(year from  sysdate)
+    <if test="merchantId!=null">
+      and M_ID=#{merchantId}
+    </if>
+  </select>
+
+  <!-- 查询当前年的呢的交易笔数 -->
+  <select id="fullYearTotalOrders" resultType="java.lang.Long">
+    select count(0)
+    from ORDERS
+    where status=4 and  extract(year from checkout_time )= extract(year from  sysdate)
+    <if test="merchantId!=null">
+      and M_ID=#{merchantId}
+    </if>
+
+  </select>
+
+  <!-- 未完成的订单数-->
+  <select id="outstandingOrders" resultType="java.lang.Long">
+    select count(0)
+    from orders
+    where status=1 and  extract(day from checkout_time )= extract(day from  sysdate)
+    <if test="merchantId!=null">
+      and M_ID=#{merchantId}
+    </if>
+
+  </select>
+
+  <!-- 查询用户最近一笔订单信息-->
+  <select id="lastOrder" resultType="com.hxzy.vo.front.OrdersVO">
+    SELECT  o.*
+    FROM  orders   o
+    where o.status&lt;= 5  and  o.user_id=1
+         and o.order_time between   TRUNC(SYSDATE) - interval '3' day   and  TRUNC(SYSDATE)
+       and rownum=1
+    order by o.order_time  desc
+
+  </select>
+
+  <!-- 根据订单号查询-->
+  <select id="findByOrderNumber"  resultMap="BaseResultMap">
+     select *
+     from ORDERS
+     where ORDER_NUMBER=#{orderNumber}
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from ORDERS
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.hxzy.entity.Orders">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.math.BigDecimal" >
+      select ORDER_SEQ.nextval from dual
+    </selectKey>
+    insert into ORDERS (ID, ORDER_NUMBER, "STATUS", 
+      USER_ID, M_ID, ADDRESS_BOOK_ID, 
+      ORDER_TIME, CHECKOUT_TIME, PAY_METHOD, 
+      AMOUNT, REMARK, PHONE, 
+      ADDRESS, USER_NAME, CONSIGNEE
+      )
+    values (#{id}, #{orderNumber,jdbcType=VARCHAR}, #{status,jdbcType=DECIMAL},
+      #{userId,jdbcType=DECIMAL}, #{mid,jdbcType=DECIMAL}, #{addressBookId,jdbcType=DECIMAL},
+      #{orderTime,jdbcType=TIMESTAMP}, #{checkoutTime,jdbcType=TIMESTAMP}, #{payMethod,jdbcType=DECIMAL}, 
+      #{amount,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{consignee,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxzy.entity.Orders">
+    insert into ORDERS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="orderNumber != null">
+        ORDER_NUMBER,
+      </if>
+      <if test="status != null">
+        "STATUS",
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="mid != null">
+        M_ID,
+      </if>
+      <if test="addressBookId != null">
+        ADDRESS_BOOK_ID,
+      </if>
+      <if test="orderTime != null">
+        ORDER_TIME,
+      </if>
+      <if test="checkoutTime != null">
+        CHECKOUT_TIME,
+      </if>
+      <if test="payMethod != null">
+        PAY_METHOD,
+      </if>
+      <if test="amount != null">
+        AMOUNT,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="phone != null">
+        PHONE,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="userName != null">
+        USER_NAME,
+      </if>
+      <if test="consignee != null">
+        CONSIGNEE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="orderNumber != null">
+        #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="mid != null">
+        #{mid,jdbcType=DECIMAL},
+      </if>
+      <if test="addressBookId != null">
+        #{addressBookId,jdbcType=DECIMAL},
+      </if>
+      <if test="orderTime != null">
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkoutTime != null">
+        #{checkoutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payMethod != null">
+        #{payMethod,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="consignee != null">
+        #{consignee,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxzy.entity.Orders">
+    update ORDERS
+    <set>
+      <if test="orderNumber != null">
+        ORDER_NUMBER = #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        "STATUS" = #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="mid != null">
+        M_ID = #{mid,jdbcType=DECIMAL},
+      </if>
+      <if test="addressBookId != null">
+        ADDRESS_BOOK_ID = #{addressBookId,jdbcType=DECIMAL},
+      </if>
+      <if test="orderTime != null">
+        ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkoutTime != null">
+        CHECKOUT_TIME = #{checkoutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payMethod != null">
+        PAY_METHOD = #{payMethod,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null">
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="consignee != null">
+        CONSIGNEE = #{consignee,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxzy.entity.Orders">
+    update ORDERS
+    set ORDER_NUMBER = #{orderNumber,jdbcType=VARCHAR},
+      "STATUS" = #{status,jdbcType=DECIMAL},
+      USER_ID = #{userId,jdbcType=DECIMAL},
+      M_ID = #{mid,jdbcType=DECIMAL},
+      ADDRESS_BOOK_ID = #{addressBookId,jdbcType=DECIMAL},
+      ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      CHECKOUT_TIME = #{checkoutTime,jdbcType=TIMESTAMP},
+      PAY_METHOD = #{payMethod,jdbcType=DECIMAL},
+      AMOUNT = #{amount,jdbcType=DECIMAL},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      USER_NAME = #{userName,jdbcType=VARCHAR},
+      CONSIGNEE = #{consignee,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

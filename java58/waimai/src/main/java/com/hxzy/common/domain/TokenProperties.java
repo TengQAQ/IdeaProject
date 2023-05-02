@@ -29,6 +29,12 @@ public class TokenProperties {
      */
     private String adminRedisPrefix="admin:token:";
 
+
+    /**
+     * 手机端登录令牌前缀标识
+     */
+    private String mobileRedisPrefix="mobile:token:";
+
     /**
      * 管理员令牌JWT前缀(持票人)
      */

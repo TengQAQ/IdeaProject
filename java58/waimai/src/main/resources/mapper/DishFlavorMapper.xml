@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxzy.mapper.DishFlavorMapper">
+  <resultMap id="BaseResultMap" type="com.hxzy.entity.DishFlavor">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="DISH_ID" jdbcType="DECIMAL" property="dishId" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="VALUE" jdbcType="VARCHAR" property="value" />
+    <result column="IS_DELETED" jdbcType="DECIMAL" property="isDeleted" />
+    <result column="CREATE_BY" jdbcType="VARCHAR" property="createBy" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="UPDATE_BY" jdbcType="VARCHAR" property="updateBy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, DISH_ID, "NAME", "VALUE", IS_DELETED, CREATE_BY, CREATE_TIME, UPDATE_TIME, UPDATE_BY
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from DISH_FLAVOR
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from DISH_FLAVOR
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.hxzy.entity.DishFlavor">
+    insert into DISH_FLAVOR (ID, DISH_ID, "NAME", 
+      "VALUE", IS_DELETED, CREATE_BY, 
+      CREATE_TIME, UPDATE_TIME, UPDATE_BY
+      )
+    values (DISH_FLAVOR_SEQ.nextval, #{dishId,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR},
+      #{value,jdbcType=VARCHAR}, #{isDeleted,jdbcType=DECIMAL}, #{createBy,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxzy.entity.DishFlavor">
+    insert into DISH_FLAVOR
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="dishId != null">
+        DISH_ID,
+      </if>
+      <if test="name != null">
+        "NAME",
+      </if>
+      <if test="value != null">
+        "VALUE",
+      </if>
+      <if test="isDeleted != null">
+        IS_DELETED,
+      </if>
+      <if test="createBy != null">
+        CREATE_BY,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="dishId != null">
+        #{dishId,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=DECIMAL},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxzy.entity.DishFlavor">
+    update DISH_FLAVOR
+    <set>
+      <if test="dishId != null">
+        DISH_ID = #{dishId,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null">
+        "NAME" = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        "VALUE" = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        IS_DELETED = #{isDeleted,jdbcType=DECIMAL},
+      </if>
+      <if test="createBy != null">
+        CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxzy.entity.DishFlavor">
+    update DISH_FLAVOR
+    set DISH_ID = #{dishId,jdbcType=DECIMAL},
+      "NAME" = #{name,jdbcType=VARCHAR},
+      "VALUE" = #{value,jdbcType=VARCHAR},
+      IS_DELETED = #{isDeleted,jdbcType=DECIMAL},
+      CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{updateBy,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>
