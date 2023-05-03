@@ -154,7 +154,8 @@ public enum AckCode {
     ORDER_STATUA_ERROR(5001,"订单状态异常，不能支付"),
     ORDER_PAY_FAIL(5002,"订单支付失败"),
     ORDER_PAY_CheckSignature(5003,"支付成功，数据签名认证失败"),
-    EXISTS_VALUE_ACCOUNT(507,"账户已被使用");
+    EXISTS_VALUE_ACCOUNT(5007,"账户已被使用"),
+    SMS_SEND_COLD_TIME_FORMAT(5008, "请勿重复申请验证码");
 
 
 
