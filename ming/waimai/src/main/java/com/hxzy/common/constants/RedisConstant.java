@@ -18,6 +18,15 @@ public class RedisConstant {
      * 5分钟
      */
     public static final Integer FIVE_MINUTES=5;
+    /**
+     * 短信的redis前缀
+     */
+    public static final String SMS_REDIS_KEY="sms:";
+
+    /**
+     * 商家注册短信的redis前缀
+     */
+    public static final String SMS_SHOP_REGISTER_REDIS_KEY="sms:shop:register:";
 
 
     /**

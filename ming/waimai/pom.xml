@@ -147,6 +147,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
+
+        <!-- 腾讯云短信 -->
+        <dependency>
+            <groupId>com.tencentcloudapi</groupId>
+            <artifactId>tencentcloud-sdk-java</artifactId>
+            <version>3.1.717</version>
+        </dependency>
     </dependencies>
 
      <!-- 构造项目，把项目打包成jar包，运行 -->
